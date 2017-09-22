@@ -37,5 +37,12 @@
     <File Path="SA\images\staricons1.gif" Url="SA/images/staricons1.gif" />
     <File Path="SA\images\whitestar1.svg" Url="SA/images/whitestar1.svg" />
     <File Path="SA\images\goldstar2.svg" Url="SA/images/goldstar2.svg" />
+    <File Path="SA\js\AIEM_gantt.js" Url="SA/js/AIEM_gantt.js" />
+    <File Path="SA\js\camljs.min.js" Url="SA/js/camljs.min.js" />
+    <File Path="SA\js\calendar_color.js" Url="SA/js/calendar_color.js" />
+    <File Path="SA\js\camlbuilder.js" Url="SA/js/camlbuilder.js" />
+    <File Path="SA\js\jquery.fn.gantt.js" Url="SA/js/jquery.fn.gantt.js" />
+    <File Path="SA\js\jquery.fn.gantt.min.js" Url="SA/js/jquery.fn.gantt.min.js" />
+    <File Path="SA\js\gridCalendar.js" Url="SA/js/gridCalendar.js" />
   </Module>
 </Elements>

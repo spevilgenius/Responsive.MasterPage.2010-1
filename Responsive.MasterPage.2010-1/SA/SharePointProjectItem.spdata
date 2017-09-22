@@ -38,5 +38,12 @@
     <ProjectItemFile Source="images\staricons1.gif" Target="SA\images\" Type="ElementFile" />
     <ProjectItemFile Source="images\whitestar1.svg" Target="SA\images\" Type="ElementFile" />
     <ProjectItemFile Source="images\goldstar2.svg" Target="SA\images\" Type="ElementFile" />
+    <ProjectItemFile Source="js\AIEM_gantt.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\camljs.min.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\calendar_color.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\camlbuilder.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\jquery.fn.gantt.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\jquery.fn.gantt.min.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\gridCalendar.js" Target="SA\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>

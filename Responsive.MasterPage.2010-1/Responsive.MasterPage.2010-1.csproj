@@ -133,9 +133,16 @@
     </Content>
     <Content Include="SA\images\goldstar1.svg" />
     <Content Include="SA\images\staricons1.gif" />
+    <Content Include="SA\js\AIEM_gantt.js" />
     <Content Include="SA\js\bootstrap.min.js" />
+    <Content Include="SA\js\calendar_color.js" />
+    <Content Include="SA\js\camlbuilder.js" />
+    <Content Include="SA\js\camljs.min.js" />
     <Content Include="SA\js\customFooter.js" />
+    <Content Include="SA\js\gridCalendar.js" />
     <Content Include="SA\js\iefixes.js" />
+    <Content Include="SA\js\jquery.fn.gantt.js" />
+    <Content Include="SA\js\jquery.fn.gantt.min.js" />
     <Content Include="SA\js\jquery.min.js" />
     <Content Include="SA\js\masterpage.js" />
     <Content Include="SA\js\tether.min.js" />
