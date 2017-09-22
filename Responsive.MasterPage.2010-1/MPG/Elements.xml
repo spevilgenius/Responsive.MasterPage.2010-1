@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="MPG" Url="_catalogs/masterpage">
+
+    <File Path="MPG\MyNNSResponsive.NoFlyouts.master" Url="MyNNSResponsive.NoFlyouts.master" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" Type="GhostableInLibrary">
+      <Property Name="ContentType" Value="$Resources:cmscore,contenttype_masterpage_name;" />
+      <Property Name="Title" Value="MyNNS Responsive Master Page Without Flyouts" />
+      <Property Name="PublishingPreviewImage" Value="$PublishingPreviewImage$" />
+      <Property Name="MasterPageDescription" Value="The responsive master page for MyNNS that does not have flyouts" />
+    </File>
+
+    <File Path="MPG\NNSR-BlankWebPartPage.aspx" Url="NNSR-BlankWebPartPage.aspx" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" Type="GhostableInLibrary">
+      <Property Name="Title" Value="NNSR-BlankWebPartPage" />
+      <Property Name="MasterPageDescription" Value="NNS Responsive Blank Web Part Page" />
+      <Property Name="ContentType" Value="$Resources:cmscore,contenttype_pagelayout_name;" />
+      <Property Name="PublishingPreviewImage" Value="~SiteCollection/_catalogs/masterpage/en-us/Preview Images/nnsBlankWebPartPage.png, ~SiteCollection/_catalogs/masterpage/en-us/Preview Images/nnsBlankWebPartPage.png" />
+      <Property Name="PublishingAssociatedContentType" Value=";#$Resources:cmscore,contenttype_welcomepage_name;;#0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF390064DEA0F50FC8C147B0B6EA0636C4A7D4;#" />
+    </File>
+
+    <File Path="MPG\NNSR-BlankWebPartPageFull.aspx" Url="NNSR-BlankWebPartPageFull.aspx" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" Type="GhostableInLibrary">
+      <Property Name="Title" Value="NNSR-BlankWebPartPageFull" />
+      <Property Name="MasterPageDescription" Value="NNS Responsive Blank Web Part Page Full Width" />
+      <Property Name="ContentType" Value="$Resources:cmscore,contenttype_pagelayout_name;" />
+      <Property Name="PublishingPreviewImage" Value="~SiteCollection/_catalogs/masterpage/en-us/Preview Images/nnsBlankWebPartPage.png, ~SiteCollection/_catalogs/masterpage/en-us/Preview Images/nnsBlankWebPartPage.png" />
+      <Property Name="PublishingAssociatedContentType" Value=";#$Resources:cmscore,contenttype_welcomepage_name;;#0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF390064DEA0F50FC8C147B0B6EA0636C4A7D4;#" />
+    </File>
+    
+    <File Path="MPG\nnsBlankWebPartPage.png" Url="en-us/Preview Images/nnsBlankWebPartPage.png" ReplaceContent="TRUE" Type="GhostableInLibrary" />
+    <File Path="MPG\nns2column.png" Url="en-us/Preview Images/nns2column.png" ReplaceContent="TRUE" Type="GhostableInLibrary" />
+    <File Path="MPG\nns3column.png" Url="en-us/Preview Images/nns3column.png" ReplaceContent="TRUE" Type="GhostableInLibrary" />
+    <File Path="MPG\navleft.png" Url="en-us/Preview Images/navleft.png" ReplaceContent="TRUE" Type="GhostableInLibrary" />
+    <File Path="MPG\navright.png" Url="en-us/Preview Images/navright.png" ReplaceContent="TRUE" Type="GhostableInLibrary" />
+    <File Path="MPG\NDU.Responsive.2010.master" Url="MPG/NDU.Responsive.2010.master" />
+    <File Path="MPG\v4.bootstrap.master" Url="MPG/v4.bootstrap.master" />
+    <File Path="MPG\v4.master" Url="MPG/v4.master" />
+    <File Path="MPG\customSite_BS.master" Url="MPG/customSite_BS.master" />
+    <File Path="MPG\MyNNSResponsiveB.master" Url="MPG/MyNNSResponsiveB.master" />
+    <File Path="MPG\BlankWebPartPage.aspx" Url="MPG/BlankWebPartPage.aspx" />
+    <File Path="MPG\HomePageLayout.aspx" Url="MPG/HomePageLayout.aspx" />
+    <File Path="MPG\DashboardLayout2.aspx" Url="MPG/DashboardLayout2.aspx" />
+    <File Path="MPG\PMTDashboardLayout.aspx" Url="MPG/PMTDashboardLayout.aspx" />
+    <File Path="MPG\customSite.master" Url="MPG/customSite.master" />
+    <File Path="MPG\DashboardLayout2 - Copy.aspx" Url="MPG/DashboardLayout2 - Copy.aspx" />
+    <File Path="MPG\PMTDashboardLayout2.aspx" Url="MPG/PMTDashboardLayout2.aspx" />
+    <File Path="MPG\Responsive.master" Url="MPG/Responsive.master" />
+    <File Path="MPG\Responsive.Publishing.master" Url="MPG/Responsive.Publishing.master" />
+    <File Path="MPG\jpl-html5-may2017.master" Url="MPG/jpl-html5-may2017.master" />
+    <File Path="MPG\Responsive.2010.master" Url="MPG/Responsive.2010.master" />
+    <File Path="MPG\apmu-html4.master" Url="MPG/apmu-html4.master" />
+  </Module>
+</Elements>

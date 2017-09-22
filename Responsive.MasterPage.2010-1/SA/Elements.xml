@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="SA">
+    <File Path="SA\css\common.css" Url="SA/css/common.css" />
+    <File Path="SA\css\custom-bootstrap-theme.css" Url="SA/css/custom-bootstrap-theme.css" />
+    <File Path="SA\css\font-awesome.min.css" Url="SA/css/font-awesome.min.css" />
+    <File Path="SA\css\spreset.css" Url="SA/css/spreset.css" />
+    <File Path="SA\js\bootstrap.min.js" Url="SA/js/bootstrap.min.js" />
+    <File Path="SA\js\iefixes.js" Url="SA/js/iefixes.js" />
+    <File Path="SA\js\jquery.min.js" Url="SA/js/jquery.min.js" />
+    <File Path="SA\js\tether.min.js" Url="SA/js/tether.min.js" />
+    <File Path="SA\js\utilityfunctions.js" Url="SA/js/utilityfunctions.js" />
+    <File Path="SA\js\customFooter.js" Url="SA/js/customFooter.js" />
+    <File Path="SA\css\customSite.css" Url="SA/css/customSite.css" />
+    <File Path="SA\css\global.media.css" Url="SA/css/global.media.css" />
+    <File Path="SA\css\global.structure.css" Url="SA/css/global.structure.css" />
+    <File Path="SA\css\global.theme.css" Url="SA/css/global.theme.css" />
+    <File Path="SA\css\bootstrap.min.css" Url="SA/css/bootstrap.min.css" />
+    <File Path="SA\css\bootstrap-theme.min.css" Url="SA/css/bootstrap-theme.min.css" />
+    <File Path="SA\css\dashboardlayout2.css" Url="SA/css/dashboardlayout2.css" />
+    <File Path="SA\css\jpl-styles-skm.css" Url="SA/css/jpl-styles-skm.css" />
+    <File Path="SA\css\styles-may2017.css" Url="SA/css/styles-may2017.css" />
+    <File Path="SA\images\armylogo-80.png" Url="SA/images/armylogo-80.png" />
+    <File Path="SA\js\masterpage.js" Url="SA/js/masterpage.js" />
+    <File Path="SA\fonts\FontAwesome.otf" Url="SA/fonts/FontAwesome.otf" />
+    <File Path="SA\fonts\fontawesome-webfont.eot" Url="SA/fonts/fontawesome-webfont.eot" />
+    <File Path="SA\fonts\fontawesome-webfont.svg" Url="SA/fonts/fontawesome-webfont.svg" />
+    <File Path="SA\fonts\fontawesome-webfont.ttf" Url="SA/fonts/fontawesome-webfont.ttf" />
+    <File Path="SA\fonts\fontawesome-webfont.woff" Url="SA/fonts/fontawesome-webfont.woff" />
+    <File Path="SA\fonts\glyphicons-halflings-regular.eot" Url="SA/fonts/glyphicons-halflings-regular.eot" />
+    <File Path="SA\fonts\glyphicons-halflings-regular.svg" Url="SA/fonts/glyphicons-halflings-regular.svg" />
+    <File Path="SA\fonts\glyphicons-halflings-regular.ttf" Url="SA/fonts/glyphicons-halflings-regular.ttf" />
+    <File Path="SA\fonts\glyphicons-halflings-regular.woff" Url="SA/fonts/glyphicons-halflings-regular.woff" />
+    <File Path="SA\fonts\glyphicons-halflings-regular.woff2" Url="SA/fonts/glyphicons-halflings-regular.woff2" />
+    <File Path="SA\fonts\glyphicons-halflings-regular - Copy.svg" Url="SA/fonts/glyphicons-halflings-regular - Copy.svg" />
+    <File Path="SA\images\cog-svg.svg" Url="SA/images/cog-svg.svg" />
+    <File Path="SA\images\staricons1.gif" Url="SA/images/staricons1.gif" />
+    <File Path="SA\images\whitestar1.svg" Url="SA/images/whitestar1.svg" />
+    <File Path="SA\images\goldstar2.svg" Url="SA/images/goldstar2.svg" />
+  </Module>
+</Elements>

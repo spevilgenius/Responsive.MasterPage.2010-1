@@ -1,0 +1,289 @@
+body { 
+	font-family:'Segoe UI', Arial, sans-serif !important;
+	font-size: 13px;
+	color: #444;
+}
+html, body {height: 100%; font-size: 13px; line-height: normal; }
+
+.padr0 { padding-right: 0; }
+.padl0 { padding-left: 0; }
+.padlr10 { padding-left: 10px; padding-right: 10px; }
+.padlr15 { padding-left: 15px; padding-right: 15px; }
+.padlr5 { padding-left: 5px; padding-right: 5px; }
+.padtop7 { padding-top: 7px; }
+.padtop5 { padding-top: 5px; }
+.padb25 { padding-bottom: 25px; }
+.floatleft { float: left; }
+.floatright { float: right; }
+.topstickyholder { height: 50px; width: 100%; }
+.topsticky { height: 50px; z-index: 2000; width: 100%; }
+/*.sticky { position: absolute; top: 0; left: 0; padding-left: 20px; }*/ /* left: 0 ensures that bottom border fills entire width. left padding pushes content back in line */
+.sticky { position: absolute; top: 60px; left: 0; } 
+
+.container-full { width: 100%; padding: 0 15px; }
+
+.nav-header { 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+
+.ms-srch-sbLarge > .ms-srch-sb-searchLink, .ms-srch-sbLarge > .ms-srch-sb-navLink {
+    margin-top: 10px;
+}
+
+/*#region misc fixes*/
+.ms-aclinv-dialog { padding-left: 10px; } /* Fixes the share popup left padding to ensure that the checkbox is displayed */
+
+.ms-webpart-titleText {
+	font-size: 20px;
+	line-height: 28px;
+}
+/*#endregion*/
+
+/*#region Carousel*/
+
+.globalcarousel.grey-blue .arrow-icon {	
+	background-image: url('../images/mynns-iconsprite.png');
+	background-repeat: no-repeat;
+	width: 15px;
+	height: 18px;	
+	padding: 0 0 0 12px;
+	display: inline-block;
+}
+.globalcarousel.grey-blue .arrow-holder {
+	width: 19px;
+	height: 100%;
+	-moz-opacity: 1;	
+	-webkit-opacity: 1;	
+	opacity: 1;
+	float: left; display: block;	
+}
+
+.globalcarousel.grey-blue .arrow-icon.left {
+	left: 0;
+	background-position: -8px -37px;
+}
+.globalcarousel.grey-blue .arrow-icon.right {
+	right: 0;
+	background-position: -36px -37px;
+}
+
+.globalcarousel.grey-blue .arrow-holder:hover {
+	-moz-opacity: 1;	
+	-webkit-opacity: 1;	
+	opacity: 1;	
+}
+
+.globalcarousel.grey-blue .arrow-holder.disabled {
+	-moz-opacity: 1;	
+	-webkit-opacity: 1;	
+	opacity: 1;	
+}
+
+.globalcarousel.grey-blue .tc-paging-container {
+	display: block;
+	float: left;
+}
+
+.globalcarousel.grey-blue .tc-paging-item {
+	background: url('../images/mynns-iconsprite.png') no-repeat no-repeat -37px -66px;  /*   -95px -4px;  */
+	width: 16px;
+	height: 16px;	
+	display: inline-block;
+	-moz-opacity: 0.8;	
+	-webkit-opacity: 0.8;	
+	opacity: 0.8;	
+}
+.globalcarousel.grey-blue .tc-paging-item.current {	
+	background: url('../images/mynns-iconsprite.png') no-repeat no-repeat -8px -66px;  /*   -95px -22px;  */
+}
+.globalcarousel.grey-blue .tc-paging-item:hover {		
+	-moz-opacity: 1;	
+	-webkit-opacity: 1;	
+	opacity: 1;		
+}
+/*#endregion*/
+
+/*#region MODAL*/
+
+.modal-vertical-alignment-helper {
+	display:table;
+	height: 100%;
+	width: 100%;
+}
+.modal-vertical-align-center {
+	display: table-cell;
+	vertical-align: middle;
+}
+.modal-content-inherit {
+	width:inherit;
+	height:inherit;
+	margin: 0 auto;
+}
+
+#modalPersonalanchor { 
+	border-radius: 50%;
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+	float:left;
+	margin-right:10px;
+	height: 30px;
+}
+
+#modalPersonalImage { border-radius: 50%; height: 30px; }
+
+#modalPersonalArrow { 
+	background-image: url('../images/mynns-iconsprite.png');
+	background-repeat: no-repeat no-repeat;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	margin-left: 5px;
+	background-position: -5px -91px;
+}
+
+.modal { top: 50px; } /* Ensure the modal doesn't cover the top navbar */
+
+.tabHeader, .deptHeader, .resHeader { font-size: 32px; font-weight: 200; line-height: 50px; float: left; }
+.deptHeader, .resHeader { padding-top: 22px; padding-bottom: 22px; }
+
+/*#region Organizations Tab */
+
+#divsRow ul { list-style-type: none; padding: 0 5px; }
+#divsRow ul li { padding: 4px 5px 4px 0; }
+#divsRow ul li a { font-size: 13px; }
+#divsRow ul li a:hover { text-decoration: underline; cursor: pointer; }
+#divsRow ul li a.nolink { text-decoration: none !important; }
+#divsRow ul li a.nolink:hover { cursor: text; }
+
+.refine { font-size: 20px; line-height: 50px; text-align: center; }
+
+#deptLinks { list-style-type: none; height: 50px; padding: 0; margin: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+#deptLinks li { height: 20px; padding: 14px 0; margin: 0 5px; float: left; }
+#deptLinks li a { font-size: 17px; }
+#deptLinks li a:hover, #deptLinks li a:focus { text-decoration: none; }
+#deptLinks li:hover { padding: 12px 0; height: 23px; }
+#deptLinks li:hover a { font-size: 18px;  text-decoration: underline; }
+#deptLinks li.active { padding: 12px 0; margin: 0 10px; height: 23px; }
+#deptLinks li.active a { font-size: 18px; text-decoration: none; }
+
+#deptsRow ul { list-style-type: none; padding: 0;}
+#deptsRow ul li { padding: 4px 5px 4px 0; }
+#deptsRow ul li a { font-size: 13px; }
+#deptsRow ul li a:hover { text-decoration: underline; }
+#deptsRow ul li a.nolink { text-decoration: none !important; }
+#deptsRow ul li a.nolink:hover { cursor: text; }
+
+
+/*#endregion Organizations Tab */ 
+
+/*#region Resources Tab */
+
+#resLinks { list-style-type: none; height: 50px; padding: 0; margin: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+#resLinks li { height: 20px; padding: 14px 0; margin: 0 3px; float: left; }
+#resLinks li a { font-size: 16px; }
+#resLinks li a:hover, #resLinks li a:focus { text-decoration: none; }
+#resLinks li:hover { padding: 12px 0; height: 22px; }
+#resLinks li:hover a { font-size: 17px;  text-decoration: underline; }
+#resLinks li.active { padding: 12px 0; margin: 0 10px; height: 22px; }
+#resLinks li.active a { font-size: 17px; text-decoration: none; }
+
+#resRow ul { list-style-type: none; padding: 0 5px;}
+#resRow ul li { padding: 4px 5px 4px 0; }
+#resRow ul li a { font-size: 13px; }
+#resRow ul li a:hover { text-decoration: underline; }
+#resRow ul li a.nolink { text-decoration: none !important; }
+#resRow ul li:hover a { } 
+
+/*#endregion End Resources Tab */
+
+/*#region Procedures Tab */
+
+#procsRow ul { list-style-type: none; padding: 0;}
+#procsRow ul li { padding: 4px 5px 4px 0; }
+#procsRow ul li a { font-size: 13px; }
+#procsRow ul li a:hover { text-decoration: underline; }
+#procsRow ul li a.nolink { text-decoration: none !important; }
+#procsRow ul li:hover a { } 
+
+/*#endregion Procedures Tab */
+
+/*#region News Tab */
+
+#NTNTop { position: relative; top: 0; height: 261px; padding-bottom: 20px; border-bottom: 1px solid #dedede; }
+#newsCarouselNav { overflow: hidden; position: absolute; top: 0; }
+.globalcarousel-header { position: absolute; top: 0; height: 30px; width: 691px; }
+.globalcarousel-title { font-weight:bold; font-size: 13px; line-height: 13px; text-transform: uppercase; display: inline-block; float: left; padding: 2px 20px 15px 0;}
+.globalmoreitems { display: block; float: right; font-size: 13px; line-height: 13px; text-transform: uppercase; color: #0072bc; padding: 2px 20px 15px 0; }
+.globalcarousel-wrapper { overflow: hidden; position: absolute; top: 30px; }
+.globalcarousel-container { list-style-type: none; position: relative; }
+.globalcarousel-item { float: left; display: block; }
+.globalnewscontainer {  }
+.globalnewsleft { padding: 0; float: left; display: block; }
+.globalnewsleft a img { width: 344px; height: 258px; }
+.globalnewsright { float: right; display: block; position: relative; }
+.globalnewstitle { 
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 25px;
+    display: block; 
+    padding: 0; 
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+}
+.globalnewsdate { font-size: 12px; color: #9e9e9e; text-transform: uppercase; }
+.globalnewscontent { overflow: hidden; font-size: 13px; padding: 5px 0; line-height: 18px; color: #444444; }
+.globalreadmore { height: 20px; line-height: 20px; width: 70px; }
+.globalreadmore a { font-family: 'Segoe UI'; font-size: 13px; font-weight: bold; color: #0072bc; }
+
+#NTNMiddle { position: relative; padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid #dedede; }
+.EventsNavTitle{ margin-left:-15px; }
+#GlobalEvents { }
+#NavEvents { border-right: 1px solid #dedede; padding: 0; }
+
+.globalmediaphoto, .globalmediavideo { position: relative; }
+.globalmpimage, .globalmvimage { position:absolute; z-index: 100; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.globalcontentrow { font-size: 12px; line-height: 15px; overflow: hidden; }
+.globalcontentrow p { margin: 0 0 5px; }
+.globallengthrow { margin: 0; color: #9e9e9e; font-size: 13px; }
+
+#NTNBottom { position: relative; width: 100%; padding-top: 20px; }
+#NTNBottom ul { list-style-type: none; padding: 0 5px;}
+#NTNBottom ul li { padding: 4px 6px; }
+#NTNBottom ul li a { font-size: 13px; }
+#NTNBottom ul li a:hover { text-decoration: underline; }
+
+/*#endregion News Tab*/
+/*#endregion End Modal */
+
+/* ---------------------------------------------------------------------------------------- Footer Styles -------------------------------------------------------------- */
+/*#region FOOTER */
+
+.fwrapper {
+	min-height: 100%;
+	height: auto !important;
+	margin: 0 auto -300px;
+	overflow: visible !important;
+}
+.section-footer, .fpush { clear: both; }
+.fpush { padding: 10px; margin: 0; height: 320px; }
+.section-footer { height: 300px; } /* footer has 20 pixels of top and bottom padding so it is 20 pixels shorter */
+body #s4-workspace { margin-bottom: -320px; }
+
+#nnsfootercontent { padding: 35px 0; margin: 0; }
+#nnsfootercontent ul {  }
+#nnsfootercontent ul li { list-style: none; padding-bottom: 8px; font-size: 13px; }
+#nnsfootercontent ul li:hover a { text-decoration: underline; }
+#nnsfootercontent ul li:first-child { font-weight: 200; font-size: 18px; padding-bottom: 15px; }
+#nnsfootercontent ul li:first-child a { text-decoration: none; cursor: default; }
+#nnsfootercontent ul li:last-child { padding-bottom: 0; }
+
+.footer-sub { padding: 0; font-size: 13px;}
+.copyright { text-align: center; padding: 8px 0; }
+
+.nnsfooterlistcol { 
+	padding: 5px;
+}
+.footerlogo { display: block; padding-left: 20px; }
+
+/*#endregion End Footer */

@@ -1,0 +1,281 @@
+﻿    
+/*Security Banner DIV TOP*/
+#DoDSecurityBanner {
+	padding-top: 2px;
+	background-color: green;
+	background-image: url('/sites/PMT/SiteAssets/images/SecurityBannerbg.png') !important;
+	background: #277e27; /* Old browsers */
+	background-repeat: repeat-x;	
+	color: white !important;
+	font-size: 12px;
+	font-family: "Verdana";
+	height: 18px;
+	text-align: center;
+
+}
+
+a:link {color:#0B1E31;}      /* unvisited link */
+a:visited {color:#0B1E31;}  /* visited link */
+a:hover {color:#212D39;}  /* mouse over link */
+
+#_invisibleIfEmpty {
+	padding: 0px;
+}
+
+/*Don't change the Background Color using the 'body' tag. It will mess up the DataSheet View interfaces*/
+/* Make your Background Color changes using the forms#aspnetForm block below*/
+form #aspnetForm{ 
+	/* background-color:#c2c2c2 !important;*/
+}
+
+.customBodyArea{
+	background-color:#fff !important;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	width:100%;
+    position: absolute;
+	top:0;
+	bottom:0;
+}
+
+.customBreadcrumb {
+	color: #FFFFFF;
+	background-color: #3D3D3D;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	margin: 3px 1px 3px 4px;
+}
+
+.customPageTitle {
+	color:#FFFFFF;
+	background-color: #3D3D3D;
+	background-image:url('../tmcd/css/BlueGradient.jpg');
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight: bold !important;
+	font-size: 14px !important;
+	padding: 2px 0px 2px 0px;
+	text-align:center;
+	border-top: 2px #C0C0C0 ridge;
+	border-bottom: 2px #C0C0C0 ridge;
+}
+
+.customPageFooter {
+	height:26px;
+	width:100%;
+	position:fixed;
+	bottom:0px;
+	left: 0px;
+	background-color:#3D3D3D !important;
+	z-index: 5001;
+}
+
+.CustomFooter {
+	left:0;
+	width:100%;
+	text-align:center;
+	padding: 5px 0px 5px 0px;
+}
+
+.CustomFooter a {
+	text-align: center; 
+	text-decoration:none !important;
+	color:#fff !important;
+}
+
+.CustomFooter a:hover { 
+	color:#FFCB05 !important;
+}
+
+/* |--------- Quicklaunch - Side Menu -----------| */
+.sideMenuBlock {
+	color:#fff !important;
+	BACKGROUND-COLOR: #3D3D3D !important;
+	margin-top:10px;	
+	margin-bottom:10px;	
+	border-top: 1px #fff solid !important;
+	border-bottom: 1px #fff solid !important;
+	font:normal 11px arial;
+}
+.sideMenuBlock ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sideMenuBlock ul li {
+	margin:0;
+	padding: 3px 0px 4px 3px;
+}
+.sideMenuBlock ul li.menuHeader {
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+	text-transform:uppercase;
+	padding: 5px 4px 4px 4px;
+	line-height:17px;
+	border-bottom: 1px #606060 solid !important;
+}
+.sideMenuBlock ul li img {vertical-align:middle;margin-right:2px;}
+.sideMenuBlock a {text-decoration:none;color:#fff;}
+.sideMenuBlock a:hover { color:#FFD700;}
+
+.bulletMenuBlock { margin-top:10px;margin-bottom:10px;font:normal 12px arial; }
+.bulletMenuBlock ul { margin: 0;padding: 0;list-style: none; }
+.bulletMenuBlock ul li { margin:0; padding: 2px 0px 4px 15px; }
+.bulletMenuBlock a { text-decoration:none;font-weight:normal;color:#3D3D3D; }
+.bulletMenuBlock a:link { font-weight:normal;color:#3D3D3D; }
+.bulletMenuBlock a:hover { font-weight:bolder;color:#3D3D3D;}
+.bulletMenuBlock a:visited { font-weight:normal;color:#3D3D3D;}
+
+
+/* Custom Dialog Pages */
+.pagesHeader {
+	text-align: center;
+	color:#00395e;
+	font-size:22px;
+	font-weight:bold;
+}
+/* Blockquote Styling */
+.blockquote {
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  color:#000;
+  font-size:14px;
+}
+
+.blockquote p {
+  display: inline;
+}
+.blockquote a {
+  color:#000040;
+}
+
+/* the norm */
+#notify-notice-wrapper {
+	position:fixed;
+	top:20px;
+	right:20px;
+	width:301px;
+	z-index:9999;
+}
+#notify-notice-wrapper.top-left {
+    left: 20px;
+    right: auto;
+}
+#notify-notice-wrapper.bottom-right {
+    top: auto;
+    left: auto;
+    bottom: 20px;
+    right: 20px;
+}
+#notify-notice-wrapper.bottom-left {
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    left: 20px;
+}
+.notify-item-wrapper {
+	position:relative;
+	margin:0 0 10px 0;
+	background:url('/sites/PMT/SiteAssets/images/ie-spacer.gif'); /* ie7/8 fix */ 
+}
+.notify-top {
+	background:url("/sites/PMT/SiteAssets/images/notify.png") no-repeat left -30px;
+	height:10px;
+}
+.hover .notify-top {
+	background-position:right -30px;
+}
+.notify-bottom {
+	background:url("/sites/PMT/SiteAssets/images/notify.png") no-repeat left bottom;
+	height:8px;
+	margin:0;
+}
+.hover .notify-bottom {
+	background-position: bottom right;
+}
+.notify-item {
+	display:block;
+	background:url("/sites/PMT/SiteAssets/images/notify.png") no-repeat left -40px;
+	color:#eee;
+	padding:2px 11px 8px 11px;
+	font-size: 11px;
+	font-family:verdana;
+}
+.hover .notify-item {
+	background-position:right -40px;
+}
+.notify-item p {
+	padding:0;
+	margin:0;
+	word-wrap:break-word;
+}
+.notify-close {
+	display:none;
+	position:absolute;
+	top:5px;
+	left:3px;
+	background:url("/sites/PMT/SiteAssets/images/notify.png") no-repeat left top;
+	cursor:pointer;
+	width:30px;
+	height:30px;
+	text-indent:-9999em;
+}
+.notify-title {
+	font-size:14px;
+	font-weight:bold;
+	padding:0 0 7px 0;
+	margin-left:22px;
+	display:block;
+	text-shadow:1px 1px 0 #000; /* Not supported by IE :( */
+}
+.notify-image {
+	width:48px;
+	height:48px;
+	float:left;
+}
+.notify-with-image,
+.notify-without-image {
+	padding:0;
+}
+.notify-with-image {
+	width:220px;
+	float:right;
+}
+/* for the light (white) version of the notify notice */
+.notify-light .notify-item,
+.notify-light .notify-bottom,
+.notify-light .notify-top,
+.notify-light .notify-close {
+    background-image: url("/sites/PMT/SiteAssets/images/notify.png");
+    color: #222;
+}
+.notify-light .notify-title {
+    text-shadow: none;
+}
+
+.loadingBox{
+    left: 0;
+    top: 0;
+    cursor: wait;
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size:28px;
+	font-weight:bold;
+	padding: 50px 50px 15px 50px;
+    color: #ffcb05;
+	z-index:100;
+	position: absolute;
+	width:100%;
+	height:600px;
+	background: rgba(194,194,194,0.75);
+	background-color: rgba(194,194,194,0.75);
+	background-image: -ms-linear-gradient(#3D3D3D, #C2C2C2);/*For IE10*/
+	background-image: linear-gradient(#3D3D3D, #C2C2C2);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#3D3D3D, endColorstr=#C2C2C2);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#3D3D3D, endColorstr=#C2C2C2)";
+	background-repeat: repeat-x;	
+}
+
+
+

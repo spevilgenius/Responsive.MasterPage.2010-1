@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="SA\" Type="ElementManifest" />
+    <ProjectItemFile Source="css\common.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\custom-bootstrap-theme.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\font-awesome.min.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\spreset.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="js\bootstrap.min.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\iefixes.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\jquery.min.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\tether.min.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\utilityfunctions.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\customFooter.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="css\customSite.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\global.media.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\global.structure.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\global.theme.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\bootstrap.min.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\bootstrap-theme.min.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\dashboardlayout2.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\jpl-styles-skm.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="css\styles-may2017.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="images\armylogo-80.png" Target="SA\images\" Type="ElementFile" />
+    <ProjectItemFile Source="js\masterpage.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\FontAwesome.otf" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\fontawesome-webfont.eot" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\fontawesome-webfont.svg" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\fontawesome-webfont.ttf" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\fontawesome-webfont.woff" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\glyphicons-halflings-regular.eot" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\glyphicons-halflings-regular.svg" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\glyphicons-halflings-regular.ttf" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\glyphicons-halflings-regular.woff" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\glyphicons-halflings-regular.woff2" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="fonts\glyphicons-halflings-regular - Copy.svg" Target="SA\fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="images\cog-svg.svg" Target="SA\images\" Type="ElementFile" />
+    <ProjectItemFile Source="images\staricons1.gif" Target="SA\images\" Type="ElementFile" />
+    <ProjectItemFile Source="images\whitestar1.svg" Target="SA\images\" Type="ElementFile" />
+    <ProjectItemFile Source="images\goldstar2.svg" Target="SA\images\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

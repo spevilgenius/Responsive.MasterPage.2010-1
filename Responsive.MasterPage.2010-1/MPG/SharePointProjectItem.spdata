@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="MPG\" Type="ElementManifest" />
+    <ProjectItemFile Source="navleft.png" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="navright.png" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="nns2column.png" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="nns3column.png" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="nnsBlankWebPartPage.png" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="NNSR-BlankWebPartPage.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="NNSR-BlankWebPartPageFull.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="MyNNSResponsive - Copy.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="MyNNSResponsive.NoFlyouts.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="NDU.Responsive.2010.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="v4.bootstrap.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="v4.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="customSite_BS.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="MyNNSResponsiveB.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="BlankWebPartPage.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="HomePageLayout.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="DashboardLayout2.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="PMTDashboardLayout.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="customSite.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="DashboardLayout2 - Copy.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="PMTDashboardLayout2.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="Responsive.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="Responsive.Publishing.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="jpl-html5-may2017.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="Responsive.2010.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="apmu-html4.master" Target="MPG\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

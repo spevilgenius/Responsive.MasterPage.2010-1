@@ -1,0 +1,66 @@
+/* SP Fixes */
+.ms-blog-postBody img {border:1px solid #ccc;}
+
+body, .ms-core-overlay { background-color: #ffffff; }
+
+.topsticky { background: #f2f6f9; }
+.sticky { border-bottom: 1px solid #8FAABB; }
+
+.tabHeader { color: #111; }
+
+/* Organizations Tab */
+
+#divsRow ul li a { color: #184765; }
+#divsRow ul li a:hover { color: #0072bc; }
+#divsRow ul li a.nolink { color: #888 !important; cursor: text; }
+#divsRow ul li:hover a { } 
+
+#deptLinks > li > a { color: #85a3b6; }
+#deptLinks > li.active > a { color: #0072bc; }
+#deptLinks > li:hover > a { color: #0072bc; }
+
+#deptsRow ul li a { color: #184765; }
+#deptsRow ul li a:hover { color: #0072bc; }
+#deptsRow ul li a.nolink { color: #888 !important; cursor: text; }
+#deptsRow ul li:hover a { }
+
+/* End Organizations Tab */ 
+/* Resources Tab */
+
+#resLinks > li > a { color: #85a3b6; }
+#resLinks > li.active > a { color: #0072bc; }
+#resLinks > li:hover > a { color: #0072bc; }
+
+#resRow ul li a { color: #184765; }
+#resRow ul li a:hover { color: #0072bc; }
+#resRow ul li a.nolink { color: #888 !important; cursor: text; }
+#resRow ul li:hover a { }
+
+/* End Resources Tab */
+/* Procedures Tab */
+
+#procsRow ul li a { color: #184765; }
+#procsRow ul li a:hover { color: #0072bc; }
+#procsRow ul li a.nolink { color: #888 !important; cursor: text; }
+#procsRow ul li:hover a { }
+
+/* End Procedures Tab */
+
+#NTNBottom ul li a { color: #184765; }
+#NTNBottom ul li a:hover { color: #0072bc; }
+
+/* End Desktop / Tablet Tabs */
+/* End Modal */
+
+/* ---------------------------------------------------------------------------------------- Footer Styles -------------------------------------------------------------- */
+
+.section-footer {background-color:#f3f3f3; color:#0072bc !important;}
+.footercontainer { background-color:#f3f3f3; }
+#nnsfootercontent ul li:first-child a { color: #333b41; }
+#nnsfootercontent ul li a {color:#375e77;}
+#nnsfootercontent ul li:hover a {color:#0072bc; text-decoration: underline; }
+#nnsfootercontent ul li:first-child:hover a {color:#333b41; text-decoration: none; }
+#nnsfootercontent h5 { color:#f9f9f9; }
+.footer-sub {background: #f3f3f3; color: #375e77 !important; }
+.footer-sub a { color: #375e77; }
+.copyright a:hover {color:#0072bc; text-decoration: underline; }

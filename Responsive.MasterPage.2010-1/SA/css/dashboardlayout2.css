@@ -1,0 +1,30 @@
+﻿body #s4-leftpanel {
+    display: none !important;
+}
+
+.s4-ca {
+    margin-left: 0px !important;
+}
+
+.webpartcontainer {
+    min-height: 550px !important;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.ms-WPBorder, .ms-WPBorderBorderOnly {
+    border-color: #000000 !important;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.ms-WPHeader {
+    color: #fff !important;
+    background-color: #000000 !important;
+    text-decoration: none;
+}
+
+.ms-WPTitle, .ms-WPTitle a {
+    color: #ffffff !important;
+}

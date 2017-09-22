@@ -1,0 +1,163 @@
+﻿/*bootstrap 3 resets for SharePoint*/
+/*border-box causes issues with SharePoint so set to content-box */
+*:before, *:after {
+	-webkit-box-sizing: content-box; 
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+/* then reset elements that bootstrap expects to be border-box */
+[class^="col-"], [class^="col-"]:before, [class^="col-"]:after,
+.container, .container:before, .container:after,
+.row, .row:before, .row:after, .NNSNavTab,
+.nav, .navbar-toggle, .table, .table-responsive, .form-control, .btn-block, .caret, .dropdown-menu, .navbar-toggle, .page-navigation, .icon-bar, .breadcrumb, .progress-bar, .modal-dialog,
+legend, fieldset, code, pre
+{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.btn { min-width:0; }
+
+.ms-siteactions-imgspan {
+	float: none;
+	margin: 0px;
+}
+input.ms-cui-cb-input {
+	height: 14px;
+	padding: 3px 7px 2px;
+}
+select, input[type="file"] {
+	height: auto;
+	line-height: 20px;
+}
+label {
+	display: inline-block;
+	margin-bottom: 0px;
+	font-weight: normal;
+}
+.navbar-toggle {
+	min-width: 0px;
+}
+a:focus { 
+	outline: none; 
+}
+button::-moz-focus-inner {
+	border: 0;
+}
+/*end bootstrap resets*/
+
+.ms-cui-ctl-thin {padding:0 4px !important; height:100% !important; margin-top:10px !important;}
+#ms-help {padding:0 !important; margin:0 5px !important;}
+#ms-help span {height:25px !important; width:25px !important; margin:0 !important;}
+
+.ms-core-form ms-aclinv-dialog { padding-left: 10px; }
+
+.ms-dlgFrameContainer { overflow-y: hidden !important; }
+
+.ms-cui-topBar2 img { max-width: none; }
+
+/*
+html {
+    min-height: 0;
+}
+
+body #s4-ribbonrow, {
+    position: fixed;
+    z-index: 1000;
+}
+
+body .ms-MenuUIPopupBody,
+body .ms-popoutMenu,
+body .ms-cui-menu[id ^= "Ribbon."] {
+            position: fixed !important;
+}
+
+#s4-workspace {
+    overflow: visible !important;
+}
+form#aspnetForm {
+    height: auto;
+}
+
+.navbar-default {
+    border-width: 0;
+}
+.ms-dlgOverlay {
+    width: 100% !important;
+}
+ 
+body #s4-bodyContainer {
+    min-width: 0;
+}
+ 
+body #s4-ribbonrow {
+    line-height: 1.2;
+}
+body .s4-breadcrumb-menu {
+    background-color: #FFFFFF;
+}
+body a:hover,
+body a:focus,
+body a:active {
+    text-decoration: none;
+}
+
+body #pageStatusBar,
+body .ms-cui-tooltip {
+    line-height: 1.1;
+    font-size: 8pt;
+}
+body .ms-dlgContent {
+    line-height: 1.1;
+}
+ 
+#s4-ribbonrow *,
+#s4-ribbonrow *:before,
+#s4-ribbonrow *:after,
+*[class*='ms-dlg'],
+*[class*='ms-dlg']:before,
+*[class*='ms-dlg']:after,
+.ms-dlgFrameContainer > div,
+.ms-dlgFrameContainer > div:before,
+.ms-dlgFrameContainer > div:after,
+.ms-dlgFrameContainer > div > div,
+.ms-dlgFrameContainer > div > div:before,
+.ms-dlgFrameContainer > div > div:after,
+.ms-MenuUIPopupBody,
+.ms-MenuUIPopupBody:before,
+.ms-MenuUIPopupBody:after,
+.ms-MenuUIPopupBody *,
+.ms-MenuUIPopupBody *:before,
+.ms-MenuUIPopupBody *:after,
+.ms-ToolPaneOuter,
+.ms-ToolPaneOuter:before,
+.ms-ToolPaneOuter:after,
+.ms-ToolPaneOuter *,
+.ms-ToolPaneOuter *:before,
+.ms-ToolPaneOuter *:after,
+*[class*='ms-cui'],
+*[class*='ms-cui']:before,
+*[class*='ms-cui']:after,
+*[class*='ms-cui'] *,
+*[class*='ms-cui'] *:before,
+*[class*='ms-cui'] *:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.ms-cui-modalDiv-ie,
+.ms-cui-glass-ie {
+    background-color: transparent;
+}
+
+.outer .ms-WPBody {
+    font-family: inherit;
+    font-size: inherit;
+}
+.ms-ToolPaneOuter img {
+    display: inline-block;
+    max-width: none;
+}
+*/

@@ -1,0 +1,271 @@
+﻿@charset "utf-8";
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 62.5%;
+	line-height: 1.25;
+}
+
+body p {
+	font-size: 11pt;
+	line-height: 18px;
+	margin-bottom: 8px;
+}
+
+body .s4-widecontentarea {
+	min-width: 1280px;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+	outline: none;
+}
+
+
+body #s4-ribbonrow {
+	background-color: #000;
+}
+
+
+/* Site Actions Menu button: change hover background of Site Actions button */
+.ms-siteactionsmenuhover{
+	border-color: #000 !important;
+	background-image: none !important;
+	background-color: #666 !important;
+}
+ 
+/* Site Actions Menu Button: removes the border from the button in the off state */
+.ms-siteactionsmenu {
+	border-color:none !important;
+}
+
+/*.s4-breadcrumb-anchor:hover,.s4-breadcrumb-anchor-open,.ms-qatbutton:hover {
+	background-image: none !important;
+}*/
+
+
+
+/* Welcome / login stuff */
+.ms-HoverCellActive, .ms-SpLinkButtonActive {
+	background: transparent;
+	border-color: #000;
+}
+
+.ms-welcomeMenu.ms-SpLinkButtonActive {
+	background: transparent;
+	background-color: #666;
+	border-color: #000;
+}
+
+/* Arrow breadcrumb stuff */
+.s4-breadcrumb-anchor:hover, .ms-qatbutton:hover, .s4-breadcrumb-anchor-open {
+	background: transparent;
+	background-color: #666;
+	border-color: #000;
+}
+
+/* no border at bottom of ribbon */
+.ms-cui-topBar2 {
+	border-bottom: none;
+}
+
+/* The main header wrapper */
+
+#headerwrap {
+	/*height: 106px;*/
+	min-width: 960px;
+	padding: 0;
+	background: #323336 url('images/header-bg.png') repeat-x;
+}
+
+.titlelogo {
+	height: 80px;
+	width: 62px;
+	position: absolute;
+	margin: 8px 0 0 18px;
+}
+
+#title {
+	padding: 16px 0 0 116px;
+	color: #fec325;
+}
+
+#title h1 {
+	font-size: 26px;
+	font-family: Trebuchet MS, Arial, sans-serif;
+}
+
+.logotwinpack {
+	width: 92px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 6px 18px 0 0;
+}
+
+
+
+/* Main Nav */
+
+body #s4-topheader2 {
+	margin-top: -38px;
+	/*padding-left: 209px;
+	height: 38px;*/
+	border: 0;
+	background: url('images/navbar-45.png') no-repeat 0 0 transparent;
+}
+
+.s4-tn {
+	margin: 57px 0 0 110px;
+	background: #323536; /* Old browsers */
+}
+
+#s4-topheader2 .menu ul li {
+	/*height: 38px;*/
+	float: left;
+	color: #ccc;
+	font-size: 13px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	/*border-right: 1px solid #cc9900;*/
+}
+
+#s4-topheader2 .menu ul li a, #s4-topheader2 .menu ul li a:hover { border-right: 1px solid #5b5d5e; }
+
+#s4-topheader2 .s4-tn .menu-item { border-right: 1px solid #5b5d5e; }
+
+
+
+/*#s4-topheader2 .menu { border-right: 1px solid #cc9900; }  Last nav item */
+
+
+#s4-topheader2  span.static.dynamic-children.menu-item,
+#s4-topheader2  a.dynamic.menu-item  { /* dropdown items */
+	display: block;
+	font-weight: bold;
+	color: #fec325;
+	text-align: left;
+	text-decoration: none;
+	padding: 10px 17px 16px 17px;
+}
+
+#s4-topheader2 span.menu-item.dynamic-children.static { color: #fec325; } /* nav item with dropdown children */
+
+#s4-topheader2 a.static { /* Top Nav */
+	display: block;
+	font-weight: bold;
+	color: #fec325;
+	text-align: center;
+	text-decoration: none;
+	padding: 10px 17px 16px 17px;
+}
+
+.s4-tn UL.dynamic { background-color: #323536; }
+#s4-topheader2 li.dynamic { border-bottom: 1px solid #5b5d5e; width:100%; } /*dropdowns */
+#s4-topheader2 li.dynamic, #s4-topheader2 li.dynamic > a:hover { background-color: #323536; } /*dropdowns */
+
+
+
+/* main nav rollovers */
+#s4-topheader2 a.static:hover, #s4-topheader2 a.dynamic:hover { color: #fff; }
+
+
+/*.s4-toplinks .s4-tn a.selected { background-color:transparent; background-image:none; }  undo that inherited bg colour */
+
+#s4-topheader2 a.selected, #s4-topheader2 a.selected:hover {
+	background-image: none;
+	background-color: transparent;
+	/*background-color: #0099ff;*/
+	border: 0;
+	margin: 0;
+	color: #fff;
+}
+
+#s4-topheader2 .menu-item {
+	height: 11px;
+	border: 0;
+}
+
+
+#dropshadow {
+	width: 100%;
+	height: 6px;
+	background: url('images/header-shadow.png') repeat-x 0 0 transparent;
+}
+
+
+/* search */
+#s4-searcharea {
+	margin: 14px;
+}
+
+#s4-searcharea .s4-wpTopTable { margin-top:6px; }
+#s4-searcharea .s4-help { margin-top:10px; }
+
+.ms-sbscopes { display: none; }
+
+
+
+/* the Bread */
+.s4-title { width: 60%; /*height:60px;*/ padding:10px; margin: 10px 0 0 10px; background: transparent; }
+
+.s4-title h1, .s4-title h2 {
+	font-size: 13px;
+	font-weight: bold;
+	color: #000;
+}
+
+.s4-title h1 a, .s4-title h1 a:visited, .s4-title h2 a, .s4-title h2 a:visited {
+	color: #999;
+}
+
+#s4-status-s1 { display: none; }
+
+#s4-statusbarcontainer { display: none; }
+
+
+
+
+
+/* Quick Launch */
+
+.ms-quickLaunch .menu-item {
+	background-color: #fff;
+	font-size: 12px;
+	padding: 0 0 0 10px;
+}
+
+.s4-ql ul.root > li > .menu-item {
+	font-weight: bold;
+	color: #333;
+}
+
+.s4-ql ul.root ul > li > a {
+	padding: 2px 4px 2px 10px;
+}
+
+.s4-help {
+	margin: 4px 18px 0 0;
+}

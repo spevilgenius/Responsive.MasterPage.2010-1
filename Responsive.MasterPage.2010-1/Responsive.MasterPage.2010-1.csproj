@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7AB13227-655B-4C75-84E0-770226E0C1E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyNNS.Responsive.MasterPage</RootNamespace>
+    <AssemblyName>MyNNS.Responsive.MasterPage</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+    <ActiveDeploymentConfiguration>No Activation</ActiveDeploymentConfiguration>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.snk" />
+    <None Include="MPG\apmu-html4.master" />
+    <None Include="MPG\customSite_BS.master" />
+    <None Include="MPG\jpl-html5-may2017.master" />
+    <None Include="MPG\MyNNSResponsive.NoFlyouts.master" />
+    <None Include="MPG\MyNNSResponsive - Copy.master" />
+    <None Include="MPG\MyNNSResponsiveB.master" />
+    <None Include="MPG\NDU.Responsive.2010.master" />
+    <None Include="MPG\Responsive.2010.master" />
+    <None Include="MPG\Responsive.master" />
+    <None Include="MPG\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5025a7f0-bac4-43a0-8f61-c57a3daab344}</SharePointProjectItemId>
+    </None>
+    <None Include="MPG\v4.bootstrap.master" />
+    <None Include="MPG\v4.master" />
+    <None Include="MPG\Responsive.Publishing.master" />
+    <None Include="Package\Package.package">
+      <PackageId>{cd69e49c-b092-4379-9f04-8fdc6bafe6d7}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="SA\fonts\fontawesome-webfont.eot" />
+    <None Include="SA\fonts\fontawesome-webfont.ttf" />
+    <None Include="SA\fonts\fontawesome-webfont.woff" />
+    <None Include="SA\fonts\FontAwesome.otf" />
+    <None Include="SA\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="SA\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="SA\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="SA\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="SA\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b1e7b143-4518-4fa9-9966-8cee36db424a}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="SA\html\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MPG\Elements.xml" />
+    <Content Include="MPG\navleft.png" />
+    <Content Include="MPG\navright.png" />
+    <Content Include="MPG\nns2column.png" />
+    <Content Include="MPG\nns3column.png" />
+    <Content Include="MPG\nnsBlankWebPartPage.png" />
+    <Content Include="MPG\NNSR-BlankWebPartPage.aspx" />
+    <Content Include="MPG\NNSR-BlankWebPartPageFull.aspx" />
+    <Content Include="SA\css\bootstrap-theme.min.css" />
+    <Content Include="SA\css\bootstrap.min.css" />
+    <Content Include="SA\css\common.css" />
+    <Content Include="SA\css\custom-bootstrap-theme.css" />
+    <Content Include="SA\css\customSite.css" />
+    <Content Include="SA\css\dashboardlayout2.css" />
+    <Content Include="SA\css\font-awesome.min.css" />
+    <Content Include="SA\css\global.media.css" />
+    <Content Include="SA\css\global.structure.css" />
+    <Content Include="SA\css\global.theme.css" />
+    <Content Include="SA\css\jpl-styles-skm.css" />
+    <Content Include="SA\css\spreset.css" />
+    <Content Include="SA\css\styles-may2017.css" />
+    <Content Include="SA\Elements.xml" />
+    <Content Include="SA\fonts\fontawesome-webfont.svg" />
+    <Content Include="SA\fonts\glyphicons-halflings-regular - Copy.svg" />
+    <Content Include="SA\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="SA\images\armylogo-80.png" />
+    <Content Include="SA\images\cog-svg.svg" />
+    <Content Include="SA\images\whitestar1.svg">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SA\images\goldstar1.svg" />
+    <Content Include="SA\images\staricons1.gif" />
+    <Content Include="SA\js\bootstrap.min.js" />
+    <Content Include="SA\js\customFooter.js" />
+    <Content Include="SA\js\iefixes.js" />
+    <Content Include="SA\js\jquery.min.js" />
+    <Content Include="SA\js\masterpage.js" />
+    <Content Include="SA\js\tether.min.js" />
+    <Content Include="SA\js\utilityfunctions.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

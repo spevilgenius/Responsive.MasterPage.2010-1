@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="cd69e49c-b092-4379-9f04-8fdc6bafe6d7" solutionId="cd69e49c-b092-4379-9f04-8fdc6bafe6d7" resetWebServer="false" sharePointProductVersion="15.0" name="MyNNS.Responsive.MasterPage" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" />
