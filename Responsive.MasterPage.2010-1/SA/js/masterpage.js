@@ -39,25 +39,6 @@
         });
     });
 
-    //$("#RibbonContainer").ready(function () {
-    //    var cnt = 0;
-    //    $("#s4-ribboncont .ms-cui-tts li").each(function () {
-    //        cnt += 1;
-    //        logit("Tab: " + $(this).attr('id'));
-    //    });
-    //    logit("Ribbon Tabs = " + cnt);
-    //    if (cnt >= 1) {
-    //        // Ribbon has tabs and should be visible so do nothing here
-    //    }
-    //    else {
-    //        // Ribbon is empty ?? So hide it...
-    //        logit("Hidding Ribbon...");
-    //        jQuery("#s4-ribbonrow").hide();
-    //    }
-    //});
-
-    //FixRibbonAndWorkspaceDimensions();
-
     jQuery('#UNModal').on('shown.bs.modal', function (event) {
         var rt = jQuery(event.relatedTarget)
         var tab = rt.data('tab');

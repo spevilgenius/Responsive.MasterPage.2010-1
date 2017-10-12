@@ -60,7 +60,7 @@ function logit(msg) { // global console logging function
     var dx = 320;
     var dy = 320;
     var zidx = 5000;
-    var defaultcss = "position:absolute;background:#ffffff;width:350px;height:120px;padding:10px;color:#000000;font-family:'Segoe UI';font-size:16px;text-align:center;vertical-align:middle;display:none;";
+    var defaultcss = "position:absolute;background:#ffffff;width:350px;height:120px;padding:10px;color:#000000;font-size:16px;text-align:center;vertical-align:middle;display:none;";
 
     $.fn.SPSTools_Notify = function (options) {
         var notifyopts = $.extend({}, defaults, options);
@@ -113,7 +113,7 @@ function logit(msg) { // global console logging function
 
             case 'yesno':
                 $("#SPSTools_Notify").html("").append(notifyopts.content);
-                $("#SPSTools_Notify").append("<input type='button' value='Yes' id='alert_yes'/>&nbsp;<input type='button' value='No' id='alert_no'/>");
+                $("#SPSTools_Notify").append("<input type='button' class='btn btn-default' value='Yes' id='alert_yes'/>&nbsp;<input type='button' class='btn btn-default' value='No' id='alert_no'/>");
                 $("#alert_yes").click(function () {
                     $("#SPSTools_Notify").fadeOut("4000", function () { $(this).html(""); notifyopts.callback("Yes"); });
                 });
@@ -124,7 +124,7 @@ function logit(msg) { // global console logging function
                 var width = $("#SPSTools_Notify").width();
                 var lv = cx - (width / 2) + "px";
                 var tv = cy - (height / 2) - 100 + "px";
-                $("#SPSTools_Notify").css({ border: '2px #ffff00 solid', left: lv, top: tv }).show();
+                $("#SPSTools_Notify").css({ border: '2px #000000 solid', left: lv, top: tv }).show();
                 break;
 
             case 'XML':
@@ -152,24 +152,6 @@ function logit(msg) { // global console logging function
                 var tv = cy - (height / 2) - 100 + "px";
                 $("#SPSTools_Notify").css({ border: '2px #000000 solid', left: lv, top: tv }).show();
                 break;
-                
-            //case 'showloading':
-            //	var tmpa = notifyopts.container;
-            //	var tmpb = ($("#" + tmpa).height()) / 2;
-            //	var tmpc = ($("#" + tmpa).width()) / 2;
-            //	$("#" + tmpa).append("<div id='loading_" + tmpa + "' style=" + defaultcss + " />");
-			//	//$("body").append("<div id='loading_" + tmpa + "' style=" + defaultcss + " />");
-            //	var waitMessage = "<table width='100%' align='center'><tr><td align='center'><img src='/_layouts/images/gears_an.gif'/></td></tr>";
-            //    waitMessage += "<tr><td align='center'><div id='waitdiv_" + tmpa + "' style='margin-top: 10px; font-size: 16px;'></div></td></tr></table>";
-            //    $("#loading_" + tmpa).html("").append(waitMessage);
-            //    $("#waitdiv_" + tmpa).html(notifyopts.content);
-            //    var height = $("#loading_" + tmpa).height();
-            //    var width = $("#loading_" + tmpa).width();
-            //    var lv = tmpc - (width / 2) + "px";
-            //    var tv = tmpb - (height / 2) - 100 + "px";
-            //    logit("ShowLoading: " + lv + ", " + tv);
-            //    $("#loading_" + tmpa).css({ border: '2px #000000 solid', left: lv, top: tv }).show();
-            //    break;
 
             case 'showloading':
                 var tmpa = notifyopts.container;
@@ -195,7 +177,7 @@ function logit(msg) { // global console logging function
     $(document).ready(function () {
         cx = ($(window).width()) / 2;
         cy = ($(window).height()) / 2;
-        var notifycss = "position:absolute;background:#ffffff;width:400px;height:120px;padding:10px;color:#000000;z-index:5000;font-family:'Segoe UI';font-size:16px;text-align:center;vertical-align:middle;display:none;";
+        var notifycss = "position:absolute;background:#ffffff;width:400px;height:120px;padding:10px;color:#000000;z-index:5000;font-size:16px;text-align:center;vertical-align:middle;display:none;";
         $("body").append("<div id='SPSTools_Notify' style=" + notifycss + " />");
         SP.SOD.executeOrDelayUntilScriptLoaded(function(){
 	        var tp1, tp2, tp3, tp4, tp5, tp6, tp7;
@@ -285,6 +267,15 @@ function fixurl(burl) { // global url fix. Pass in a relative url to create full
     tp2 = new String(window.location.host);
     tp3 = L_Menu_BaseUrl;
     var nurl = tp1 + SLASH + SLASH + tp2 + tp3 + burl;
+    return nurl;
+}
+
+function fixurl2(burl) { // global url fix. Pass in a relative url to create full url.
+    tp1 = new String(window.location.protocol);
+    tp2 = new String(window.location.host);
+    tp3 = _spPageContextInfo.webServerRelativeUrl;
+    var nurl = tp1 + SLASH + SLASH + tp2 + tp3 + burl;
+    //logit(nurl);
     return nurl;
 }
 
@@ -662,6 +653,63 @@ CKO.REST.GetListItems = function () {
     }
 }();
 
+CKO.REST.ListItems = function () {
+    var g = CKO.GLOBAL.VARIABLES;
+
+    var getitems = function (qurl) {
+        var ajax = jQuery.ajax({
+            url: qurl,
+            method: "GET",
+            headers: { 'accept': 'application/json; odata=verbose' },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var err = textStatus + ", " + errorThrown;
+                return ("CKO.REST.GetListItems Error: " + err);
+            },
+            success: function (data) {
+                //g.response = g.response.concat(data.d.results);
+                return data;
+                //if (data.d.__next) {
+                //    CKO.REST.GetListItems.getitems(data.d.__next);
+                //}
+                //else {
+                //    return g.response;
+                //}
+            }
+        });
+        return ajax.promise();
+    };
+
+    var addItems = function (listName, itemProperties) {
+        var iprops = JSON.stringify(itemProperties);
+        //logit("props: " + iprops);
+        var ajax = $.ajax({
+            url: fixurl2("/_vti_bin/listdata.svc/" + listName),
+            type: "POST",
+            processData: false,
+            contentType: "application/json;odata=verbose",
+            data: iprops,
+            headers: {
+                "Accept": "application/json;odata=verbose"
+            },
+            success: function (data) {
+                return data;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var err = "CKO.REST.ListItems.addItems Error: " + textStatus + ", " + errorThrown;
+                return err;
+            }
+        });
+        return ajax.promise();
+    }
+
+
+    return {
+        getitems: getitems,
+        addItems: addItems
+    }
+}();
+
+
 // The CSOM functions are all promise based functions that use the various SharePoint CSOM actions to get various types of data.
 CKO.CSOM.GetUserInfo = function () {
     var isuseringroup = function (groupName) {
@@ -889,6 +937,53 @@ CKO.CSOM.GetListItems = function () {
         return deferred.promise();
     };
 
+    var getitemsfilteredorderedandpassfieldstoelement = function (site, list, filterfield, filtervalue, order, element, fields) {
+        var xml = "<View><Method Name='Read List' /><Query><OrderBy><FieldRef Name='" + order + "'/></OrderBy><Where><Eq><FieldRef Name='" + filterfield + "' /><Value Type='Text'>" + filtervalue + "</Value></Eq></Where></Query>";
+        var inc = "Include(";
+        xml += "<ViewFields>";
+        xml += "<FieldRef Name='" + order + "'/>";
+        xml += "<FieldRef Name='" + filterfield + "'/>";
+        xml += "<FieldRef Name='ID'/>";
+        for (var z = 0; z <= fields.length - 1; z++) {
+            xml += "<FieldRef Name='" + fields[z] + "'/>";
+            if (z == fields.length - 1) {
+                inc += fields[z] + ")";
+            }
+            else {
+                inc += fields[z] + ", ";
+            }
+        }
+        xml += "</ViewFields>";
+        xml += "</View>";
+        var deferred = jQuery.Deferred();
+        var zctx, zlist;
+        switch (site) {
+            case "parent":
+                zctx = new SP.ClientContext.get_current();
+                zlist = zctx.get_site().get_rootWeb().get_lists().getByTitle(list);
+                break;
+
+            case "current":
+                zctx = new SP.ClientContext.get_current();
+                zlist = zctx.get_web().get_lists().getByTitle(list);
+                break;
+
+            default:
+                zctx = new SP.ClientContext(site);
+                zlist = zctx.get_web().get_lists().getByTitle(list);
+                break;
+        }
+        var caml = new SP.CamlQuery();
+        caml.set_viewXml(xml);
+        var items = zlist.getItems(caml);
+        zctx.load(items, inc);
+        zctx.executeQueryAsync(
+			Function.createDelegate(this, function () { deferred.resolve(items, element); }),
+			Function.createDelegate(this, function (sender, args) { deferred.reject(sender, args); })
+		);
+        return deferred.promise();
+    };
+
 
     var getitemsfilteredcomplex = function (site, list, xml, inc) { //pass in customized xml statement
         var deferred = jQuery.Deferred();        
@@ -939,6 +1034,7 @@ CKO.CSOM.GetListItems = function () {
         getitemsfiltered: getitemsfiltered,
         getitemsfilteredandpasstoelement: getitemsfilteredandpasstoelement,
         getitemsfilteredorderedandpasstoelement: getitemsfilteredorderedandpasstoelement,
+        getitemsfilteredorderedandpassfieldstoelement: getitemsfilteredorderedandpassfieldstoelement,
         getitemsfilteredcomplex: getitemsfilteredcomplex,
         getfileicon: getfileicon
     };
@@ -1254,11 +1350,9 @@ CKO.CSOM.FillDropdowns2 = function (items, field, dropdown, source) {
     while (enumerator.moveNext()) {
         var li = enumerator.get_current();
         if (li.get_item(field) != unique) {
-            var val = String($("input[title*='" + source + "']").val());
-            if (val != "undefined" && val != "null" && val != "") {
-                if (val == li.get_item(field)) {
-                    opts += "<option selected value='" + li.get_item(field) + "'>" + li.get_item(field) + "</option>";
-                }
+            var val = String($("input[title^='" + source + "']").val());
+            if (val == li.get_item(field)) {
+                opts += "<option selected value='" + li.get_item(field) + "'>" + li.get_item(field) + "</option>";
             }
             else {
                 opts += "<option value='" + li.get_item(field) + "'>" + li.get_item(field) + "</option>";
@@ -1462,4 +1556,3 @@ CKO.CSOM.GetListItemByKey = function () { // Assumes only one item will have thi
         getitemandpassdata: getitemandpassdata
     };
 }();
-

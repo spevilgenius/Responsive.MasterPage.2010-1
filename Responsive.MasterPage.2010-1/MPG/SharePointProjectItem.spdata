@@ -28,5 +28,7 @@
     <ProjectItemFile Source="jpl-html5-may2017.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="Responsive.2010.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="apmu-html4.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="cko_mod_notoolbar.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="cko_mod.master" Target="MPG\" Type="ElementFile" />
   </Files>
 </ProjectItem>

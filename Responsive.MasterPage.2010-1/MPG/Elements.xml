@@ -47,5 +47,7 @@
     <File Path="MPG\jpl-html5-may2017.master" Url="MPG/jpl-html5-may2017.master" />
     <File Path="MPG\Responsive.2010.master" Url="MPG/Responsive.2010.master" />
     <File Path="MPG\apmu-html4.master" Url="MPG/apmu-html4.master" />
+    <File Path="MPG\cko_mod_notoolbar.master" Url="MPG/cko_mod_notoolbar.master" />
+    <File Path="MPG\cko_mod.master" Url="MPG/cko_mod.master" />
   </Module>
 </Elements>
