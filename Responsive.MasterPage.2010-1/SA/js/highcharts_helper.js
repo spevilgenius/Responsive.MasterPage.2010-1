@@ -12,5 +12,5 @@ CKO.HIGHCHARTS.VARIABLES = {
 
 CKO.HIGHCHARTS.HELPER = function () {
     var v = CKO.HIGHCHARTS.VARIABLES;
-
+    // Branch testing
 }
