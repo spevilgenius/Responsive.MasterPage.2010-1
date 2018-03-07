@@ -30,5 +30,7 @@
     <ProjectItemFile Source="apmu-html4.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="cko_mod_notoolbar.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="cko_mod.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="G14.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="DiversityReportsPageLayout.aspx" Target="MPG\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -49,5 +49,9 @@
     <File Path="SA\js\moment-timezone.min.js" Url="SA/js/moment-timezone.min.js" />
     <File Path="SA\js\jquery.powertip.min.js" Url="SA/js/jquery.powertip.min.js" />
     <File Path="SA\js\moment.js" Url="SA/js/moment.js" />
+    <File Path="SA\css\bootstrap-datepicker3.min.css" Url="SA/css/bootstrap-datepicker3.min.css" />
+    <File Path="SA\js\bootstrap-datepicker.min.js" Url="SA/js/bootstrap-datepicker.min.js" />
+    <File Path="SA\css\bootstrap-datepicker3.standalone.min.css" Url="SA/css/bootstrap-datepicker3.standalone.min.css" />
+    <File Path="SA\js\highcharts_helper.js" Url="SA/js/highcharts_helper.js" />
   </Module>
 </Elements>

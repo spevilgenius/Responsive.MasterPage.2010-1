@@ -62,9 +62,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\bootstrap-grid.css.map" />
+    <None Include="Content\bootstrap-grid.min.css.map" />
+    <None Include="Content\bootstrap-reboot.css.map" />
+    <None Include="Content\bootstrap-reboot.min.css.map" />
+    <None Include="Content\bootstrap.css.map" />
+    <None Include="Content\bootstrap.min.css.map" />
     <None Include="key.snk" />
     <None Include="MPG\apmu-html4.master" />
     <None Include="MPG\customSite_BS.master" />
+    <None Include="MPG\G14.master" />
     <None Include="MPG\jpl-html5-may2017.master" />
     <None Include="MPG\MyNNSResponsive.NoFlyouts.master" />
     <None Include="MPG\MyNNSResponsive - Copy.master" />
@@ -78,6 +85,7 @@
     <None Include="MPG\v4.bootstrap.master" />
     <None Include="MPG\v4.master" />
     <None Include="MPG\Responsive.Publishing.master" />
+    <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{cd69e49c-b092-4379-9f04-8fdc6bafe6d7}</PackageId>
     </None>
@@ -95,12 +103,38 @@
     <None Include="SA\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b1e7b143-4518-4fa9-9966-8cee36db424a}</SharePointProjectItemId>
     </None>
+    <None Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\bootstrap.bundle.min.js.map" />
+    <None Include="Scripts\bootstrap.js.map" />
+    <None Include="Scripts\bootstrap.min.js.map" />
+    <None Include="Scripts\esm\popper-utils.js.map" />
+    <None Include="Scripts\esm\popper-utils.min.js.map" />
+    <None Include="Scripts\esm\popper.js.map" />
+    <None Include="Scripts\esm\popper.min.js.map" />
+    <None Include="Scripts\jquery-3.3.1.min.map" />
+    <None Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <None Include="Scripts\popper-utils.js.map" />
+    <None Include="Scripts\popper-utils.min.js.map" />
+    <None Include="Scripts\popper.js.map" />
+    <None Include="Scripts\popper.min.js.map" />
+    <None Include="Scripts\README.md" />
+    <None Include="Scripts\umd\popper-utils.js.map" />
+    <None Include="Scripts\umd\popper-utils.min.js.map" />
+    <None Include="Scripts\umd\popper.js.map" />
+    <None Include="Scripts\umd\popper.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
     <Folder Include="SA\html\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="MPG\DiversityReportsPageLayout.aspx" />
     <Content Include="MPG\Elements.xml" />
     <Content Include="MPG\navleft.png" />
     <Content Include="MPG\navright.png" />
@@ -140,6 +174,7 @@
     <Content Include="SA\js\camljs.min.js" />
     <Content Include="SA\js\customFooter.js" />
     <Content Include="SA\js\gridCalendar.js" />
+    <Content Include="SA\js\highcharts_helper.js" />
     <Content Include="SA\js\iefixes.js" />
     <Content Include="SA\js\jquery.fn.gantt.js" />
     <Content Include="SA\js\jquery.fn.gantt.min.js" />
@@ -147,6 +182,30 @@
     <Content Include="SA\js\masterpage.js" />
     <Content Include="SA\js\tether.min.js" />
     <Content Include="SA\js\utilityfunctions.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\jquery-3.3.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

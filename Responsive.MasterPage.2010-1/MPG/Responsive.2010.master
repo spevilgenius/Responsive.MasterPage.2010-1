@@ -26,7 +26,9 @@
 
     <%--<link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap.min.css %>" runat="server" />
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap-theme.min.css %>" runat="server" />--%>
+    
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/custom-bootstrap-theme.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap-datepicker3.standalone.min.css %>" runat="server" />
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/faicons.css %>" runat="server" />
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/spreset.css %>" runat="server" />
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/jquery.powertip.min.css %>" runat="server" />
@@ -37,12 +39,16 @@
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/jquery.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/tether.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/bootstrap.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/bootstrap-datepicker.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/moment.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/moment-timezone.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/jquery.powertip.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/SPServices.min.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/utilityfunctions.js" defer="false" runat="server" Localizable="false" />
     <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/masterpage.js" defer="false" runat="server" Localizable="false" />
+    <%-- Add ability for each web to have a specific login script. Use to populate the global current user variable --%>
+    <SharePoint:ScriptLink language="javascript" name="~site/SiteAssets/js/login.js" defer="false" runat="server" Localizable="false" />
+
     <script type="text/javascript">
         ExecuteOrDelayUntilScriptLoaded(function () {
             document.write('<script type="text/javascript" src="https://hq.tradoc.army.mil/sites/OCKO/SiteAssets/js/iefixes.js"></' + 'script>');
@@ -3061,6 +3067,49 @@
                                 <asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" runat="server">
                                     <PublishingNavigation:PortalSiteMapDataSource id="SiteMapDS" runat="server" EnableViewState="false" SiteMapProvider="CurrentNavigation" StartFromCurrentNode="true" StartingNodeOffset="0" ShowStartingNode="false" TrimNonCurrentTypes="Heading" />
                                     <SharePoint:AspMenu id="CurrentNav" EncodeTitle="false" runat="server" EnableViewState="false" DataSourceID="SiteMapDS" UseSeparateCSS="false" UseSimpleRendering="true" Orientation="Vertical" StaticDisplayLevels="2" MaximumDynamicDisplayLevels="0" CssClass="s4-ql" SkipLinkText="<%$Resources:cms,masterpages_skiplinktext%>" />
+                                    <Sharepoint:UIVersionedContent runat="server" UIVersion="4">
+				<ContentTemplate>
+					<Sharepoint:SPNavigationManager
+					id="TreeViewNavigationManagerV4"
+					runat="server"
+					ContainedControl="TreeView"
+					CssClass="s4-treeView"
+					>
+					  <SharePoint:SPLinkButton runat="server" NavigateUrl="~site/_layouts/viewlsts.aspx" id="idNavLinkSiteHierarchyV4" Text="<%$Resources:wss,treeview_header%>" accesskey="<%$Resources:wss,quiklnch_allcontent_AK%>" CssClass="s4-qlheader" />
+						  <div class="ms-treeviewouter">
+							<SharePoint:DelegateControl runat="server" ControlId="TreeViewAndDataSource">
+							  <Template_Controls>
+								<SharePoint:SPHierarchyDataSourceControl
+								 runat="server"
+								 id="TreeViewDataSourceV4"
+								 RootContextObject="Web"
+								 IncludeDiscussionFolders="true"
+								/>
+								<SharePoint:SPRememberScroll runat="server" id="TreeViewRememberScrollV4" onscroll="javascript:_spRecordScrollPositions(this);" style="overflow: auto;height: 400px;width: 155px; ">
+								  <Sharepoint:SPTreeView
+									id="WebTreeViewV4"
+									runat="server"
+									ShowLines="false"
+									DataSourceId="TreeViewDataSourceV4"
+									ExpandDepth="0"
+									SelectedNodeStyle-CssClass="ms-tvselected"
+									NodeStyle-CssClass="ms-navitem"
+									SkipLinkText=""
+									NodeIndent="12"
+									ExpandImageUrl="/_layouts/images/tvclosed.png"
+									ExpandImageUrlRtl="/_layouts/images/tvclosedrtl.png"
+									CollapseImageUrl="/_layouts/images/tvopen.png"
+									CollapseImageUrlRtl="/_layouts/images/tvopenrtl.png"
+									NoExpandImageUrl="/_layouts/images/tvblank.gif"
+								  >
+								  </Sharepoint:SPTreeView>
+								</Sharepoint:SPRememberScroll>
+							  </Template_Controls>
+							</SharePoint:DelegateControl>
+						  </div>
+					</Sharepoint:SPNavigationManager>
+				</ContentTemplate>
+			</SharePoint:UIVersionedContent>
                                 </asp:ContentPlaceHolder>
                             </div>
                             <div class="s4-ca">

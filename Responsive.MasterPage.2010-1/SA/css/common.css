@@ -54,15 +54,12 @@
 	box-sizing: border-box;
 }
 
-.s4-trc-container-menu, .ms-siteactionsmenu, .s4-breadcrumb-anchor, .highcharts-credits { display: none; }
-
 body #s4-ribbonrow {
 	background-color: #000;
 }
 
 body #s4-leftpanel {
     width: 180px;
-    
 }
 
 .s4-ca {
@@ -331,7 +328,7 @@ body #s4-leftpanel {
 
 .ms-WPHeader td, .ms-fakewptitle {
     border-bottom: 1px solid #000000;
-    height: 27px;  /* Ensures a specific height in lieu of a calculated height ie 26.2 */
+    height: 28px; 
 }
 
 /*#endregion*/
@@ -347,9 +344,9 @@ body #s4-leftpanel {
 	overflow: visible !important;
 }
 .section-footer, .fpush { clear: both; }
-.fpush { padding: 10px; margin: 0; height: 70px; }
+.fpush { height: 50px; }
 .section-footer { height: 50px; } /* footer has 20 pixels of top and bottom padding so it is 20 pixels shorter */
-body #s4-workspace { margin-bottom: -70px; }
+body #s4-workspace { margin-bottom: -50px; }
 
 #nnsfootercontent { padding: 35px 0; margin: 0; }
 #nnsfootercontent ul {  }

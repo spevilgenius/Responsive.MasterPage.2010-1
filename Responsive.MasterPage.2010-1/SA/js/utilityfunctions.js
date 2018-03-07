@@ -16,8 +16,14 @@ CKO.GLOBAL.VARIABLES = {
     response: [],
     waitdlg: null, // potential use of different notification mechanism
     status: null, // potential use of different notification mechanism
-    controlnumber: null,  // Used for passing SAP control number back from dialog and using in various functions.
-    sitecollection: null
+    controlnumber: null,  // Used for passing a control number in your functions.
+    sitecollection: null,
+    currentuser: { // used to staore data for logged in user
+        id: null,
+        login: null,
+        org: null,
+        type: null
+    }
 }
 
 function logit(msg) { // global console logging function
@@ -66,6 +72,10 @@ function logit(msg) { // global console logging function
         var notifyopts = $.extend({}, defaults, options);
         zidx += 1;
         switch (notifyopts.type) {
+            case "markerinfo":
+
+                break;
+
             case "fadealert": //========================================================================================== Alert ========
                 $("#SPSTools_Notify").html("").append(notifyopts.content);
                 var height = $("#SPSTools_Notify").height();
@@ -113,7 +123,7 @@ function logit(msg) { // global console logging function
 
             case 'yesno':
                 $("#SPSTools_Notify").html("").append(notifyopts.content);
-                $("#SPSTools_Notify").append("<input type='button' class='btn btn-default' value='Yes' id='alert_yes'/>&nbsp;<input type='button' class='btn btn-default' value='No' id='alert_no'/>");
+                $("#SPSTools_Notify").append("<input type='button' class='btn btn-success' value='Yes' id='alert_yes'/>&nbsp;<input type='button' class='btn btn-danger' value='No' id='alert_no'/>");
                 $("#alert_yes").click(function () {
                     $("#SPSTools_Notify").fadeOut("4000", function () { $(this).html(""); notifyopts.callback("Yes"); });
                 });
@@ -179,6 +189,7 @@ function logit(msg) { // global console logging function
         cy = ($(window).height()) / 2;
         var notifycss = "position:absolute;background:#ffffff;width:400px;height:120px;padding:10px;color:#000000;z-index:5000;font-size:16px;text-align:center;vertical-align:middle;display:none;";
         $("body").append("<div id='SPSTools_Notify' style=" + notifycss + " />");
+        $("body").append("<canvas id='SPSTools_Canvas' style='position:absolute;top:0;height:90px;display:none;' />");
         SP.SOD.executeOrDelayUntilScriptLoaded(function(){
 	        var tp1, tp2, tp3, tp4, tp5, tp6, tp7;
 	        tp1 = new SP.ClientContext.get_current();
@@ -413,6 +424,20 @@ function NotificationCallback(dialogResult, returnValue) {
                 window.location = window.location;
                 break;
 
+            case "AddSkill":
+                SP.UI.Notify.addNotification(returnValue[1], false);
+                var action = returnValue[2];
+                switch (action) {
+                    case "NewForm":
+                        CKO.FORMS.DIRECTIVES.NewForm().GetSkills(); // Function must exist on the page that called the dialog
+                        break;
+
+                    case "EditForm":
+                        CKO.FORMS.DIRECTIVES.EditForm().GetSkills(); // Function must exist on the page that called the dialog
+                        break;
+                }
+                break;
+
             case "GoToUrl": // This is used if save and continue was used from the home page to go to the AMOFormsList list
                 window.location = returnValue[1];
                 break;
@@ -622,6 +647,42 @@ function CopyDocSetFiles(msg) {
 }
 
 // The REST calls
+
+CKO.REST.GetActionItems = function () {
+    var g = CKO.GLOBAL.VARIABLES;
+
+    var getitemsbyidandpasstoelement = function (site, userid, element) {
+        var deferred = jQuery.Deferred();
+        var urlString = site + "/_vti_bin/listdata.svc/Actions?";
+        urlString += "$select=Id,Title,Expended,PMTUser/Id,ActionComments,Enabler,DateCompleted,EffortTypeValue,EndOfWeek";
+        urlString += "&$expand=PMTUser";
+        urlString += "&$filter=((PMTUser/Id eq " + userid + ") and (DateCompleted ge datetime'" + moment().subtract(31, 'days').format('YYYY-MM-DD[T]HH:MM:SS[Z]') + "'))";
+        jQuery.ajax({
+            url: urlString,
+            method: "GET",
+            headers: { 'accept': 'application/json; odata=verbose' },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var err = textStatus + ", " + errorThrown;
+                //logit ("CKO.REST.GetActionItems Error: " + err);
+                deferred.reject(err, element);
+            },
+            success: function (data) {
+                deferred.resolve(data, element);
+            }
+        });
+        return deferred.promise();
+    };
+
+    var getitemssucceeded = function (caller, data, args) {
+        
+    };
+
+    return {
+        getitemsbyidandpasstoelement: getitemsbyidandpasstoelement,
+        getitemssucceeded: getitemssucceeded
+    }
+}();
+
 CKO.REST.GetListItems = function () {
     var g = CKO.GLOBAL.VARIABLES;
 
@@ -772,6 +833,256 @@ CKO.CSOM.GetUserInfo = function () {
     return {
         isuseringroup: isuseringroup,
         getUserInfoById: getUserInfoById
+    };
+}();
+
+CKO.CSOM.GetActionItems = function () {
+    var getitemsbyuseridandpasstoelement = function (site, list, userid, startdate, element) {
+        var xml = "<View><Method Name='Read List' /><Query><OrderBy><FieldRef Name='ID'/></OrderBy><Where><And><Eq><FieldRef Name='PMTUser' LookupId='TRUE' /><Value Type='Integer'>" + userid + "</Value></Eq><Geq><FieldRef Name='DateCompleted' /><Value Type='DateTime'>" + startdate + "</Value></Geq></And></Where></Query>";
+        var fields = ["Title", "Expended", "EffortType", "DateCompleted", "PMTUser"];
+        var inc = "Include(";
+        xml += "<ViewFields>";
+        xml += "<FieldRef Name='ID'/>";
+        for (var z = 0; z <= fields.length - 1; z++) {
+            xml += "<FieldRef Name='" + fields[z] + "'/>";
+            if (z == fields.length - 1) {
+                inc += fields[z] + ")";
+            }
+            else {
+                inc += fields[z] + ", ";
+            }
+        }
+        xml += "</ViewFields>";
+        xml += "</View>";
+        var deferred = jQuery.Deferred();
+        var zctx, zlist;
+        switch (site) {
+            case "parent":
+                zctx = new SP.ClientContext.get_current();
+                zlist = zctx.get_site().get_rootWeb().get_lists().getByTitle(list);
+                break;
+
+            case "current":
+                zctx = new SP.ClientContext.get_current();
+                zlist = zctx.get_web().get_lists().getByTitle(list);
+                break;
+
+            default:
+                zctx = new SP.ClientContext(site);
+                zlist = zctx.get_web().get_lists().getByTitle(list);
+                break;
+        }
+        var caml = new SP.CamlQuery();
+        caml.set_viewXml(xml);
+        var items = zlist.getItems(caml);
+        zctx.load(items);
+        zctx.executeQueryAsync(
+			Function.createDelegate(this, function () { deferred.resolve(items, element); }),
+			Function.createDelegate(this, function (sender, args) { deferred.reject(sender, args); })
+		);
+        return deferred.promise();
+    };
+
+    return {
+        getitemsbyuseridandpasstoelement: getitemsbyuseridandpasstoelement
+    };
+}();
+
+CKO.CSOM.Lists = function () {
+    var createlist = function (site, listdata, index) {
+        var deferred = jQuery.Deferred();
+        var ctx, web, lci, list;
+        lci = new SP.ListCreationInformation();
+        switch (site) {
+            case "root":
+                ctx = new SP.ClientContext.get_current();
+                web = ctx.get_site().get_rootWeb();
+                break;
+
+            case "current":
+                ctx = new SP.ClientContext.get_current();
+                web = ctx.get_web();
+                break;
+
+            default:
+                ctx = new SP.ClientContext(site);
+                web = ctx.get_web();
+                break;
+        }
+        // use info from listdata object to create list
+        lci.set_title(listdata.ListTitle);
+        lci.set_templateType(listdata.ListTemplateType);
+        list = web.get_lists().add(lci);
+        ctx.load(web);
+        ctx.load(list);
+        ctx.executeQueryAsync(
+			Function.createDelegate(this, function () { deferred.resolve(list, index); }),
+			Function.createDelegate(this, function (sender, args) { deferred.reject(sender, args); })
+		);
+        return deferred.promise();
+    };
+
+    return {
+        createlist: createlist
+    }
+
+}();
+
+CKO.CSOM.SiteColumns = function () {
+    var addcolumntosite = function (column, index) {
+        // columns should be passed in as JSON
+        var deferred = jQuery.Deferred();
+        var zctx, zweb, fieldxml, field, fields, choices, fieldchoices;
+        // In this case it won't matter where we are because the get_rootWeb gets the site collection root
+        zctx = new SP.ClientContext.get_current();
+        zweb = zctx.get_site().get_rootWeb();
+        fields = zweb.get_fields();
+        if (column.FieldType === 'Choice' || column.FieldType === 'MultiChoice') {
+            choices = column.ChoiceList;
+            choices = choices.split(",");
+            fieldchoices = "<CHOICES>";
+            if (choices.length > 0) {
+                for (var i = 0; i < choices.length; i++) {
+                    fieldchoices += "<CHOICE>" + choices[i] + "</CHOICE>";
+                }
+                fieldchoices += "</CHOICES>";
+            }
+        }
+        fieldxml = "<Field Type='";
+        fieldxml += column.FieldType;
+        fieldxml += "' ID='{";
+        fieldxml += column.FieldID;
+        fieldxml += "}' Name='";
+        fieldxml += column.FieldTitle;
+        fieldxml += "' StaticName='";
+        fieldxml += column.FieldTitle;
+        fieldxml += "' DisplayName='";
+        fieldxml += column.FieldDisplayName;
+        if (column.Required == 'true') {
+            fieldxml += "' Required='TRUE'";
+        }
+        else { fieldxml += "'"; }
+        switch (column.FieldType) {
+            case "DateTime":
+                fieldxml += " Format='" + column.FieldFormat + "'";
+                break;
+
+            case "Choice":
+                fieldxml += " Format='" + column.FieldFormat + "'";
+                break;
+
+            case "URL":
+                fieldxml += " Format='" + column.FieldFormat + "'";
+                break;
+
+            case "User":
+                fieldxml += " List='" + column.List + "'";
+                fieldxml += " ShowField='" + column.ShowField + "'";
+                fieldxml += " UserSelectionMode='" + column.UserSelectionMode + "'";
+                fieldxml += " UserSelectionScope='" + column.UserSelectionScope + "'";
+                break;
+        }
+        fieldxml += " Group='AllCustomColumns'>";
+        
+        if (column.FieldType == "Choice" || column.FieldType == "MultiChoice") {
+            fieldxml += fieldchoices + "</Field>";
+            logit("FIELDXML: " + fieldxml);
+            field = zctx.castTo(fields.addFieldAsXml(fieldxml, false, SP.AddFieldOptions.AddFieldInternalNameHint | SP.AddFieldOptions.AddFieldCheckDisplayName), SP.FieldChoice);
+        }
+        else {
+            fieldxml += "</Field>";
+            logit("FIELDXML: " + fieldxml);
+            field = fields.addFieldAsXml(fieldxml, false, SP.AddFieldOptions.AddFieldInternalNameHint | SP.AddFieldOptions.AddFieldCheckDisplayName);
+        }
+
+        field.update();
+        zctx.load(field);
+        zctx.load(fields);
+        zctx.executeQueryAsync(
+			Function.createDelegate(this, function () { deferred.resolve(field, index); }),
+			Function.createDelegate(this, function (sender, args) { deferred.reject(sender, args); })
+		);
+        return deferred.promise();
+    };
+
+    var addcolumntolist = function (site, column, list) {
+        var deferred = jQuery.Deferred();
+        var ctx, web, field, listfields, listfield; //field = column
+        ctx = new SP.ClientContext.get_current();
+        web = ctx.get_site().get_rootWeb();
+        //field = web.get_fields().getById(column);
+        field = web.get_fields().getByInternalNameOrTitle(column);
+        listfields = list.get_fields();
+        listfield = listfields.add(field);
+        listfield.update();
+        list.update();
+        ctx.load(list);
+        ctx.load(listfield);
+        ctx.executeQueryAsync(
+			Function.createDelegate(this, function () { deferred.resolve(listfield, list); }),
+			Function.createDelegate(this, function (sender, args) { deferred.reject(sender, args); })
+		);
+        return deferred.promise();
+    }
+
+    return {
+        addcolumntosite: addcolumntosite,
+        addcolumntolist: addcolumntolist
+    }
+}();
+
+CKO.CSOM.AddListItems = function () {
+    var additemswitharrays = function (site, list, fields, fieldtypes, values, element) {
+        var deferred = jQuery.Deferred();
+        var ctx, list, listitem, ici;
+        switch (site) {
+            case "parent":
+                ctx = new SP.ClientContext.get_current();
+                list = ctx.get_site().get_rootWeb().get_lists().getByTitle(list);
+                break;
+
+            case "current":
+                ctx = new SP.ClientContext.get_current();
+                list = ctx.get_web().get_lists().getByTitle(list);
+                break;
+
+            default:
+                ctx = new SP.ClientContext(site);
+                list = ctx.get_web().get_lists().getByTitle(list);
+                break;
+        }
+        ici = new SP.ListItemCreationInformation();
+        listitem = list.addItem(ici);
+        for (var z = 0; z < fields.length; z++) {
+            switch (fieldtypes[z]) {
+                case "Date":
+                    listitem.set_item(fields[z], new Date(values[z]));
+                    break;
+
+                case "Text":
+                    listitem.set_item(fields[z], values[z]);
+                    break;
+
+                case "User":
+                    listitem.set_item(fields[z], SP.FieldUserValue.fromUser(values[z]));
+                    break;
+
+                case "Choice":
+                    listitem.set_item(fields[z], values[z]);
+                    break;
+            }
+        }
+        listitem.update();
+        ctx.load(listitem);
+        ctx.executeQueryAsync(
+			Function.createDelegate(this, function () { deferred.resolve(listitem, element); }),
+			Function.createDelegate(this, function (sender, args) { deferred.reject(sender, args); })
+		);
+        return deferred.promise();
+    };
+
+    return {
+        additemswitharrays: additemswitharrays
     };
 }();
 
@@ -983,7 +1294,6 @@ CKO.CSOM.GetListItems = function () {
 		);
         return deferred.promise();
     };
-
 
     var getitemsfilteredcomplex = function (site, list, xml, inc) { //pass in customized xml statement
         var deferred = jQuery.Deferred();        

@@ -2329,9 +2329,9 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 6px;
   line-height: 1;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dddddd;
 }
 .table > thead > tr > th {
@@ -2425,7 +2425,8 @@ table th[class*="col-"] {
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
-  background-color: #dff0d8;
+  /*background-color: #dff0d8;*/
+  background-color: #08d130;
 }
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
@@ -2649,6 +2650,7 @@ fieldset[disabled] .form-control {
   opacity: 1;
 }
 .form-control[disabled],
+.form-control[readonly],
 fieldset[disabled] .form-control {
   cursor: not-allowed;
 }
