@@ -51,5 +51,8 @@
     <File Path="MPG\cko_mod.master" Url="MPG/cko_mod.master" />
     <File Path="MPG\G14.master" Url="MPG/G14.master" />
     <File Path="MPG\DiversityReportsPageLayout.aspx" Url="MPG/DiversityReportsPageLayout.aspx" />
+    <File Path="MPG\seattle.preview" Url="MPG/seattle.preview" />
+    <File Path="MPG\seattle.master" Url="MPG/seattle.master" />
+    <File Path="MPG\SPGizmos.master" Url="MPG/SPGizmos.master" />
   </Module>
 </Elements>

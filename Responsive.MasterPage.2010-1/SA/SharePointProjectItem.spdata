@@ -54,5 +54,6 @@
     <ProjectItemFile Source="js\bootstrap-datepicker.min.js" Target="SA\js\" Type="ElementFile" />
     <ProjectItemFile Source="css\bootstrap-datepicker3.standalone.min.css" Target="SA\css\" Type="ElementFile" />
     <ProjectItemFile Source="js\highcharts_helper.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\AllDashboardReports.js" Target="SA\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>

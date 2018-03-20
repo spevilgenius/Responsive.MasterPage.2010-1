@@ -32,5 +32,8 @@
     <ProjectItemFile Source="cko_mod.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="G14.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="DiversityReportsPageLayout.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="seattle.preview" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="seattle.master" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="SPGizmos.master" Target="MPG\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -962,6 +962,9 @@ CKO.CSOM.SiteColumns = function () {
             fieldxml += "' Required='TRUE'";
         }
         else { fieldxml += "'"; }
+        if (column.JSLink !== undefined || column.JSLink !== null) {
+            fieldxml += " JSLink='" + column.JSLink + "'";
+        }
         switch (column.FieldType) {
             case "DateTime":
                 fieldxml += " Format='" + column.FieldFormat + "'";

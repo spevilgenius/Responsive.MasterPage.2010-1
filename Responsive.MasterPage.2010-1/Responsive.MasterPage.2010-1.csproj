@@ -77,8 +77,11 @@
     <None Include="MPG\MyNNSResponsive - Copy.master" />
     <None Include="MPG\MyNNSResponsiveB.master" />
     <None Include="MPG\NDU.Responsive.2010.master" />
+    <None Include="MPG\SPGizmos.master" />
     <None Include="MPG\Responsive.2010.master" />
     <None Include="MPG\Responsive.master" />
+    <None Include="MPG\seattle.master" />
+    <None Include="MPG\seattle.preview" />
     <None Include="MPG\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5025a7f0-bac4-43a0-8f61-c57a3daab344}</SharePointProjectItemId>
     </None>
@@ -168,6 +171,7 @@
     <Content Include="SA\images\goldstar1.svg" />
     <Content Include="SA\images\staricons1.gif" />
     <Content Include="SA\js\AIEM_gantt.js" />
+    <Content Include="SA\js\AllDashboardReports.js" />
     <Content Include="SA\js\bootstrap.min.js" />
     <Content Include="SA\js\calendar_color.js" />
     <Content Include="SA\js\camlbuilder.js" />
