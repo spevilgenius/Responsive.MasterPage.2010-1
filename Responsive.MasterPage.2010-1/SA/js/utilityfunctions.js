@@ -646,7 +646,7 @@ function CopyDocSetFiles(msg) {
     }
 }
 
-// The REST calls
+// The REST calls rock
 
 CKO.REST.GetActionItems = function () {
     var g = CKO.GLOBAL.VARIABLES;
