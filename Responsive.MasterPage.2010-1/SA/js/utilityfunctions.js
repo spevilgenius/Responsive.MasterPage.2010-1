@@ -2,7 +2,9 @@ var CKO = CKO || {};
 CKO.CSOM = CKO.CSOM || {};
 CKO.REST = CKO.REST || {};
 CKO.GLOBAL = CKO.GLOBAL || {};
-CKO.GLOBAL.VARIABLES = CKO.GLOBAL.VARIABLES || {};
+CKO.GLOBAL.ACTIONS = CKO.GLOBAL.ACTIONS || {};
+CKO.GLOBAL.TERMSETS = CKO.GLOBAL.TERMSETS || {};
+
 var SLASH = "/";
 var test = null;
 var user, ctxz, web, list;
@@ -13,11 +15,16 @@ var dsn;
 
 CKO.GLOBAL.VARIABLES = {
     SLASH: "/",
+    site: null,
     response: [],
     waitdlg: null, // potential use of different notification mechanism
     status: null, // potential use of different notification mechanism
     controlnumber: null,  // Used for passing a control number in your functions.
     sitecollection: null,
+    data: null,
+    json: null,
+    total: 0,
+    count: 0,
     currentuser: { // used to staore data for logged in user
         id: null,
         login: null,
@@ -26,10 +33,45 @@ CKO.GLOBAL.VARIABLES = {
     }
 }
 
+$(document).ready(function () {
+    var v = CKO.GLOBAL.VARIABLES;
+    v.data = [];
+    tp1 = new String(window.location.protocol);
+    tp2 = new String(window.location.host);
+    tp3 = new String(window.location.pathname);
+    test = new String(window.location);
+    if (test.indexOf('Lists/Directives') > 0) {
+        $("#idHomePageNewItem").attr('onclick', '').attr('href', '').click(function (e) {
+            e.preventDefault();
+            zurl = fixurl('/Lists/Directives/NewForm.aspx?IsDlg=1');
+            CKODialog(zurl, 'New Directive', '1100', '800', 'NotificationCallback');
+        });
+        $(".ms-itmhover").each(function (e) {
+            $(this).find("td.ms-vb-icon").find("a").attr("onclick", "").addClass("editLink");
+        });
+        $(".editLink").on("click", function (e) {
+            e.preventDefault();
+            tp4 = String($(this).attr("href"));
+            tp4 = tp4.substring(tp4.indexOf("ID="));
+            tp4 = tp4.split("=");
+            zurl = fixurl('/Lists/Directives/EditForm.aspx?ID=' + tp4[1] + '&IsDlg=1');
+            CKODialog(zurl, 'Edit Directive', '1100', '800', 'NotificationCallback');
+        });
+    }
+});
+
 function logit(msg) { // global console logging function
     if (typeof console != "undefined") {
         console.log(msg + " AT: " + new Date());
     }
+}
+
+function EncodeHTML(str) {
+    return String(str).replace(/"/g, '&quot;').replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function DecodeHTML(str) {
+    return String(str).replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
 }
 
 // jQuery plugin to read data passed in a querystring
@@ -201,7 +243,7 @@ function logit(msg) { // global console logging function
 	        	tp6 = new String(window.location.protocol);
     			tp7 = new String(window.location.host);
     			CKO.GLOBAL.VARIABLES.sitecollection = tp6 + SLASH + SLASH + tp7 + tp3.get_serverRelativeUrl();
-	        	logit(CKO.GLOBAL.VARIABLES.sitecollection);
+	        	//logit("SITECOLLECTION: " + CKO.GLOBAL.VARIABLES.sitecollection);
 	        },
 	        function(sender, args){
 	        	logit("Error getting site: " + args.get_message());
@@ -222,6 +264,322 @@ function logit(msg) { // global console logging function
         textareaid: 'txtar1',                                 // ID of the text area for the XML notification type
         callback: null                                  // Function to run when complete
     };
+})(jQuery);
+
+
+/*
+* SPSTools_TermSetDialog ---- Termset Picker Module
+* Version 1.0.0
+* Requires jQuery 1.7.1 or greater
+* Requires jQuery plugin jstree to draw tree 
+* Copyright (c) 2018 Daniel Walker
+* Licensed under the MIT license:
+* http://www.opensource.org/licenses/mit-license.php
+*/
+(function ($) {
+
+    var defaults = {
+        width: '600',                                       // Dialog width in px
+        height: '700',                                      // Dialog height in px
+        title: 'Select Term',                               // Dialog title
+        termstoreid: '',                                     // guid of termstore
+        termsetid: '',                                      // guid of termset
+        term: 'Skill',                                      // name of parent term
+        termid: '',                                         // id of term (for terms that have child terms)
+        multiselect: false,                                 // Allow multiple selections
+        separator: '|',                                     // separator for multiple selections
+        weburl: '',                                         // base url for web
+        siteurl: '',                                        // base url for site
+        theme: 'black',                                     // NOT USED YET---color theme option (black, green, red, blue)
+        terms: [],                                          // used internlly to hold terms received from functions
+        initialtext: '',                                    // intial text in textbox (edit capability etc)
+        callback: null                                      // supports your callback function and will pass the selected term back
+    }
+
+    // #region TSSTYLE
+    var tsstyle = "";
+    tsstyle += "<style type=\"text\/css\">";
+    tsstyle += "    .tsmodal-vertical-alignment-helper {";
+    tsstyle += "        display: table;";
+    tsstyle += "        height: 100%;";
+    tsstyle += "        width: 100%;";
+    tsstyle += "    }";
+    tsstyle += "    .tsmodal-vertical-align-center {";
+    tsstyle += "        display: table-cell;";
+    tsstyle += "        vertical-align: middle;";
+    tsstyle += "    }";
+    tsstyle += "    .tsmodal-content-inherit {";
+    tsstyle += "        width: inherit;";
+    tsstyle += "        height: inherit;";
+    tsstyle += "        margin: 0 auto;";
+    tsstyle += "    }";
+    tsstyle += "    .tsmodal { top: 50px; display: none; }";
+    tsstyle += "    .nopadding { padding: 0 !important; }";
+    tsstyle += "    .tsmodal-body { overflow-y: scroll; }";
+    tsstyle += "    .tsmodal-footer { padding: 5px; }";
+    tsstyle += "    .txtselected { padding: 5px; width: 100%; }";
+    tsstyle += "<\/style>";
+    // #endregion
+
+    var waitMessage = "<table width='100%' align='center'><tr><td align='center'><img src='/_layouts/images/gears_an.gif'/></td></tr>";
+    waitMessage += "<tr><td align='center'><div id='waitdiv' style='margin-top: 10px; font-size: 16px;'>Loading Terms...</div></td></tr></table>";
+
+    // #region TSDIALOG 
+    var tsdialog = "";
+    tsdialog += "<div class=\"tsmodal\" id=\"TSModal\" tabindex=\"-1\" role=\"dialog\">";
+    tsdialog += "    <div class=\"tsmodal-vertical-alignment-helper\">";
+    tsdialog += "        <div class=\"tsmodal-dialog modal-vertical-align-center\" role=\"document\">";
+    tsdialog += "            <div class=\"tsmodal-content modal-content-inherit\">";
+    tsdialog += "                <div class=\"tsmodal-header\" id=\"TSModal-Header\">";
+    tsdialog += "                    <button id=\"btnTSClose\" type=\"button\" class=\"close\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;<\/span><\/button>";
+    tsdialog += "                    <h4 class=\"modal-title\" id=\"TSModal-Title\"><\/h4>";
+    tsdialog += "                <\/div>";
+    tsdialog += "                <div class=\"modal-body nopadding\" id=\"TSModal-Body\">" + waitMessage + "<\/div>";
+    tsdialog += "                <div class=\"modal-footer\" id=\"TSModal-Footer\">";
+    tsdialog += "                   <div class=\"container-fluid\">";
+    tsdialog += "                       <div class=\"row\">";
+    tsdialog += "                           <div class=\"col-xs-9\" style=\"padding: 4px;\">";
+    tsdialog += "                               <input type=\"text\" id=\"txtTSSelected\" class=\"txtselected\" />";
+    tsdialog += "                           </div><div class=\"col-xs-3\" style=\"padding: 2px;\">";
+    tsdialog += "                               <button id=\"btnTSOk\" type=\"button\" class=\"btn btn-success\">Ok<\/button>";
+    tsdialog += "                               <button id=\"btnTSCancel\" type=\"button\" class=\"btn btn-danger\">Cancel<\/button>";
+    tsdialog += "                           <\/div>";
+    tsdialog += "                       <\/div>";
+    tsdialog += "                   <\/div>";
+    tsdialog += "                <\/div>";
+    tsdialog += "            <\/div><!-- \/.modal-content -->";
+    tsdialog += "        <\/div><!-- \/.modal-dialog -->";
+    tsdialog += "    <\/div><!-- \/.modal-vertical-alignment-helper -->";
+    tsdialog += "<\/div><!-- \/.modal -->";
+    // #endregion
+
+    $(document).ready(function () {
+        var head = document.getElementsByTagName('head')[0];
+        $("body").append(tsstyle);
+        $("body").append(tsdialog);
+    });
+
+    $.fn.SPSTools_TermSetDialog = function (options) {
+        var opts = $.extend(true, {}, defaults, options);
+
+        SP.SOD.executeOrDelayUntilScriptLoaded(function () {
+            tp1 = new SP.ClientContext.get_current();
+            tp2 = tp1.get_site();
+            tp3 = tp2.get_rootWeb();
+            tp1.load(tp3);
+            tp1.executeQueryAsync(function () {
+                tp4 = new String(window.location.protocol);
+                tp5 = new String(window.location.host);
+                opts.siteurl = tp4 + SLASH + SLASH + tp5 + tp3.get_serverRelativeUrl();
+                //logit("opts.siteurl: " + opts.siteurl);
+                $.fn.SPSTools_TermSetDialog.Init(opts);
+            },
+            function (sender, args) {
+                logit("Error getting site: " + args.get_message());
+            });
+        }, "sp.js");
+    };
+
+    $.fn.SPSTools_TermSetDialog.Init = function (options) {
+        var opts = $.extend(true, {}, defaults, options);
+
+        if ($("#TSModal").html() === undefined) {
+            $("body").append(tsdialog);
+        }
+
+        loadCSS(opts.siteurl + '/SiteAssets/css/jstree.min.css');
+
+        loadscript(opts.siteurl + '/SiteAssets/js/jstree.min.js', function () {
+
+            $('#TSModal').on('shown.bs.modal', function (event) {
+                $("#TSModal .modal-content").css({ height: opts.height + "px" }, { width: opts.widtht + "px" });
+                $("#TSModal .modal-body").css({ 'height': opts.height - 105 + "px" });
+                $("#TSModal-Title").html("").append(opts.title);
+            });
+
+            $("#TSModal").on('hidden.bs.modal', function () {
+                $(this).data('bs.modal', null);
+            });
+
+            $("#btnTSClose").click(function () {
+                if (opts.callback !== null) {
+                    opts.callback("");
+                    $("#TSModal").modal('hide');
+                    //$("#TSModal").remove();
+                }
+            });
+
+            $("#btnTSCancel").click(function () {
+                if (opts.callback !== null) {
+                    opts.callback("");
+                    $("#TSModal").modal('hide');
+                    //$("#TSModal").remove();
+                }
+            });
+
+            $("#btnTSOk").click(function () {
+                if (opts.callback !== null) {
+                    if ($("#txtTSSelected").val() !== '') {
+                        opts.callback($("#txtTSSelected").val());
+                        $("#TSModal").modal('hide');
+                        //$("#TSModal").remove();
+                    }
+                    else {
+                        opts.callback("");
+                        $("#TSModal").modal('hide');
+                        //$("#TSModal").remove();
+                    }
+                }
+            });
+
+            if (opts.initialtext !== '') {
+                $("#txtTSSelected").val(opts.initialtext);
+            }
+
+            $("#TSModal").modal({
+                "backdrop": true,
+                "keyboard": false,
+                "show": true
+            });
+
+            $.fn.SPSTools_TermSetDialog.GetTermsInTermSet({
+                termstoreid: opts.termstoreid,
+                termsetid: opts.termsetid,
+                url: opts.weburl
+            }).success(
+                $.fn.SPSTools_TermSetDialog.GetTermsInTermSetSuccess.bind(opts)
+            ).fail(
+                $.fn.SPSTools_TermSetDialog.GetTermsInTermSetFail.bind(opts)
+            );
+        });
+    };
+
+    $.fn.SPSTools_TermSetDialog.GetTermsInTermSet = function (options) {
+        var opts = $.extend(true, {}, defaults, options);
+        var url = opts.url + "/_vti_bin/TaxonomyInternalService.json/GetChildTermsInTermSetWithPaging";
+        var qry = {
+            lcid: 1033,
+            sspId: opts.termstoreid,
+            guid: opts.termsetid,
+            includeDeprecated: false,
+            pageLimit: 10000, // should be enough :)
+            pagingForward: false,
+            includeCurrentChild: false,
+            currentChildId: "00000000-0000-0000-0000-000000000000",
+            webId: "00000000-0000-0000-0000-000000000000",
+            listId: "00000000-0000-0000-0000-000000000000"
+        }
+
+        return $.ajax({
+            url: url,
+            type: "POST",
+            processData: false,
+            data: JSON.stringify(qry),
+            headers: {
+                "Accept": "application/json;odata=verbose",
+                "content-type": "application/json;charset=utf-8",
+                "odata-version": "4.0",
+                "X-RequestDigest": $("#__REQUESTDIGEST").val()
+            }
+        });
+    };
+
+    $.fn.SPSTools_TermSetDialog.GetTermsInTermSetSuccess = function (data) {
+        var opts = this; // options were bound using javascript .bind function
+        var results = data.d.Content;
+        var j = $.parseJSON(JSON.stringify(results));
+        for (i = 0; i < j.length; i++) {
+            if (j[i]["Nm"] !== null) {
+                var its = j[i]["It"] !== undefined || j[i]["It"] !== null ? true : false;
+                opts.terms.push({
+                    id: j[i]["Id"],
+                    text: j[i]["Nm"],
+                    children: its === true ? true : false
+                });
+            }
+        }
+
+        $("#TSModal-Body").html("").jstree({
+            'core': {
+                'data': $.fn.SPSTools_TermSetDialog.BuildTree.bind(opts)
+            }
+        }).on('select_node.jstree', function (e, data) {
+            $("#txtTSSelected").val(data.node.text);
+        });
+    }
+
+    $.fn.SPSTools_TermSetDialog.BuildTree = function (node, cb) {
+        var opts = this;
+        if (node.id === "#") {
+            cb(opts.terms);
+            opts.terms = [];
+        }
+        else {
+            //logit(node.id);
+            opts.termid = node.id;
+            $.when($.fn.SPSTools_TermSetDialog.GetTermsInTerm(opts)).then(function (terms) {
+                cb(terms);
+            });
+        }
+    };
+
+    $.fn.SPSTools_TermSetDialog.GetTermsInTermSetFail = function (jqXHR, textStatus, errorThrown) {
+        $("#txtResults").append("Getting Data Failed.\r\n" + textStatus + "\r\n" + errorThrown);
+    };
+
+    $.fn.SPSTools_TermSetDialog.GetTermsInTerm = function (options) {
+        var opts = $.extend({}, defaults, options);
+        var deferred = jQuery.Deferred();
+        var url = opts.weburl + "/_vti_bin/TaxonomyInternalService.json/GetChildTermsInTermWithPaging";
+        var qry = {
+            lcid: 1033,
+            sspId: opts.termstoreid,
+            guid: opts.termid,
+            termsetId: opts.termsetid,
+            includeDeprecated: false,
+            pageLimit: 1000,
+            pagingForward: false,
+            includeCurrentChild: false,
+            currentChildId: "00000000-0000-0000-0000-000000000000",
+            webId: "00000000-0000-0000-0000-000000000000",
+            listId: "00000000-0000-0000-0000-000000000000"
+        }
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            processData: false,
+            data: JSON.stringify(qry),
+            headers: {
+                "Accept": "application/json;odata=verbose",
+                "content-type": "application/json;charset=utf-8",
+                "odata-version": "4.0",
+                "X-RequestDigest": $("#__REQUESTDIGEST").val()
+            },
+            success: function (data) {
+                var terms = [];
+                var results = data.d.Content;
+                var j = $.parseJSON(JSON.stringify(results));
+                for (i = 0; i < j.length; i++) {
+                    if (j[i]["Nm"] !== null) {
+                        var its = j[i]["It"] !== undefined || j[i]["It"] !== null ? true : false;
+                        terms.push({
+                            id: j[i]["Id"],
+                            text: j[i]["Nm"],
+                            children: its === true ? true : false
+                        });
+                    }
+                }
+                deferred.resolve(terms);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                logit("Getting Data Failed.\r\n" + textStatus + "\r\n" + errorThrown);
+                deferred.reject([]);
+            }
+        });
+        return deferred.promise();
+    };
+
 })(jQuery);
 
 function logError(list, msg) {
@@ -250,7 +608,7 @@ function loadCSS(url) {
     style.rel = 'stylesheet';
     style.href = url;
     head.appendChild(style);
-    logit("CSS File Loaded: " + url);
+    //logit("CSS File Loaded: " + url);
 }
 
 function loadscript(url, callback) {
@@ -386,7 +744,7 @@ function _resizeModalDialog() {  // Used to correctly resize the SharePoint moda
             dlg.$U_0 = yPos;
             dlg.$m_0(dlg.$T_0, dlg.$U_0);
             dlg.$H_0.style.width = Math.max(dlg.$6_0.offsetWidth - 64, 0) + 'px';
-            logit("WIDTH CALCULATION = " + Math.max(dlg.$6_0.offsetWidth - 64, 0) + "px");
+            //logit("WIDTH CALCULATION = " + Math.max(dlg.$6_0.offsetWidth - 64, 0) + "px");
             dlg.$2B_0();
         }
     }
@@ -424,6 +782,10 @@ function NotificationCallback(dialogResult, returnValue) {
                 window.location = window.location;
                 break;
 
+            case "DirectiveTitle":
+                CKO.GLOBAL.ACTIONS.UpdateActionTitle(returnValue[1], returnValue[2]);
+                break;
+
             case "AddSkill":
                 SP.UI.Notify.addNotification(returnValue[1], false);
                 var action = returnValue[2];
@@ -433,7 +795,7 @@ function NotificationCallback(dialogResult, returnValue) {
                         break;
 
                     case "EditForm":
-                        CKO.FORMS.DIRECTIVES.EditForm().GetSkills(); // Function must exist on the page that called the dialog
+                        CKO.FORMS.DIRECTIVES.EditForm().GetSkills(returnValue[3]); // Function must exist on the page that called the dialog
                         break;
                 }
                 break;
@@ -499,162 +861,122 @@ function HideFormRows(rows) {
     }
 }
 
-function GotoDocSet(ds, cn) {
-    $().SPSTools_Notify({ type: 'wait', content: 'Redirecting To Document Set...' });
-    CKO.GLOBAL.VARIABLES.controlnumber = cn;
-    userID = _spPageContextInfo.userId;
-    var requestUri = "https://portal.ndu.edu/coo/AdminActions/_vti_bin/ListData.svc/StaffActions?$filter=(CreatedById eq " + userID + ") and (ControlNumber eq '" + CKO.GLOBAL.VARIABLES.controlnumber + "')";
-    var requestHeaders = {
-        "accept": "application/json;odata=verbose"
-    };
+CKO.GLOBAL.ACTIONS.UpdateActionTitle = function (parentid, newtitle) {
+    $().SPSTools_Notify({ type: 'wait', content: 'Directive Title Changed. Updating Actions...Please wait...' });
+    var v = CKO.GLOBAL.VARIABLES;
+    v.data = [];
+    CKO.GLOBAL.ACTIONS.GetAllActions(null, parentid, newtitle);
+};
 
-    $.ajax({
-        url: requestUri,
-        contentType: "application/json;odata=verbose",
-        headers: requestHeaders,
-        success: function (data) {
-            if (data.d.results.length > 0) {
-                // Get the id of the item
-                var id = data.d.results[0].Id;
-                $("#SPSTools_Notify").fadeOut("2500", function () {
-                    $("#SPSTools_Notify").html("");
-                });
-                window.location = "https://portal.ndu.edu/coo/AdminActions/StaffActions/Forms/StaffAction/docsethomepage.aspx?ID=" + id + "&FolderCTID=0x0120D5200013B8FD71893B2B40AF2F065AF09012520064EB76582012844E8173AC3CB61A9190&List=03e8e4fa-2390-46f6-a016-ec59a2e32924&RootFolder=%2Fcoo%2FAdminActions%2FStaffActions%2F" + ds;
-            }
+CKO.GLOBAL.ACTIONS.GetAllActions = function (zurl, parentid, newtitle) {
+    var v = CKO.GLOBAL.VARIABLES;
+    if (zurl === null) {
+        var urlString = "https://hq.tradoc.army.mil/sites/OCKO/PMT/_vti_bin/listdata.svc/Actions?";
+        urlString += "$select=Id,Title,DateCompleted,ParentID";
+        urlString += "&$filter=";
+        urlString += "(ParentID eq '" + parentid + "')";
+        zurl = urlString;
+    }
+    //logit("URL: " + zurl);
+
+    jQuery.ajax({
+        url: zurl,
+        method: "GET",
+        headers: { 'accept': 'application/json; odata=verbose' },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //to do implement logging to a central list
+            logit("Error Status: " + textStatus + ":: errorThrown: " + errorThrown);
         },
-        error: function () { logit("Get Doc Set For User Failed."); }
+        success: function (data) {
+            var v = CKO.GLOBAL.VARIABLES;
+            v.data = v.data.concat(data.d.results);
+            if (data.d.__next) {
+                zurl = data.d.__next;
+                CKO.GLOBAL.ACTIONS.GetAllActions(zurl, parentid, newtitle);
+            }
+            else {
+                var results = v.data;
+                v.json = jQuery.parseJSON(JSON.stringify(results));
+                CKO.GLOBAL.ACTIONS.AllActionsLoaded(parentid, newtitle);
+            }
+        }
     });
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-/// <summary>   Gets document set files and stores them in filearray variable. </summary>
-///
-/// <remarks>   Daniel R Walker Ctr, 3/9/2017. </remarks>
-///
-/// <param name="ds">   The document set name. </param>
-/// <param name="t">    The type ("Directives", "Memorandum" etc..). </param>
-/// <param name="cn">   The control number. </param>
-/// <param name="src">  Source library that contains the files. </param>
-/// <param name="dest"> Destination library for the files. </param>
-///
-/// <returns> The document set files in the filearray variable. </returns>
-////////////////////////////////////////////////////////////////////////////////////////////////////
+CKO.GLOBAL.ACTIONS.AllActionsLoaded = function (parentid, newtitle) {
+    var v = CKO.GLOBAL.VARIABLES;
+    var j = v.json;
+    v.total = j.length;
+    for (var i = 0; i < j.length; i++) {
+        var getitemdata = {};
+        getitemdata.itemId = j[i]["Id"];
+        getitemdata.ParentID = j[i]["ParentID"];
+        getitemdata.Title = newtitle;
+        CKO.GLOBAL.ACTIONS.getActionItemById("https://hq.tradoc.army.mil/sites/OCKO/PMT", "Actions", getitemdata.itemId).success(CKO.GLOBAL.ACTIONS.getActionItemByIdSuccess.bind(getitemdata));
+    }
+};
 
-function GetDocSetFiles(ds, t, cn, src, dest) {
-    // TODO: Update to be more universal. Currently the "StaffActionType" is hardcoded specifically to support StaffActions process.
-    dsn = ds; // dsn = doc set name and is the name of the docset which is technically a folder in the StaffActions list.
-    CKO.GLOBAL.VARIABLES.controlnumber = cn;
-    logit("CopyDocSetFiles ds: " + ds + ", t: " + t);
-    $.when(CKO.CSOM.GetLibraryItems.getfilesfiltered("current", "Templates", ["FileLeafRef", "Title", "LinkFilename", "EncodedAbsUrl", "DocIcon", "Id"], "StaffActionType", t)).then(function (files) {
-        var enumerator = files.getEnumerator();
-        var cnt = files.get_count();
-        logit("Copy File Count: " + cnt);
-        var total = 0;
-        while (enumerator.moveNext()) {
-            var item = enumerator.get_current();
-            var fid = item.get_id(); // fid is the item id and is used to get the actual "file"
-            filearray.push({
-                fileid: fid,
-                sourcelib: src,
-                destinationlib: dest,
-                docsetname: dsn
-            });
-        }
-        CopyDocSetFiles("Retrieved Files. Preparing to copy...");
-    }, function (sender, args) { logit("Get Templates Failed, " + args.get_message()); });
+CKO.GLOBAL.ACTIONS.getActionItemById = function (webUrl, listName, itemId) {
+    var url = webUrl + "/_vti_bin/listdata.svc/" + listName + "(" + itemId + ")";
+
+    return $.ajax({
+        url: url,
+        method: "GET",
+        headers: { "Accept": "application/json; odata=verbose" }
+    });
+};
+
+CKO.GLOBAL.ACTIONS.getActionItemByIdSuccess = function (data) {
+    var getitemdata = this;
+    var updateitemdata = {};
+    updateitemdata.itemId = getitemdata.itemId;
+    updateitemdata.ParentID = getitemdata.ParentID;
+    updateitemdata.Title = getitemdata.Title
+    updateitemdata.url = data.d.__metadata.uri;
+    updateitemdata.etag = data.d.__metadata.etag;
+    var itemprops = {
+        "Title": updateitemdata.Title
+    };
+    // now we can update the item with the parent id
+    CKO.GLOBAL.ACTIONS.updateActionItem("https://hq.tradoc.army.mil/sites/OCKO/PMT", "Actions", updateitemdata.itemId, itemprops, updateitemdata.url, updateitemdata.etag).success(CKO.GLOBAL.ACTIONS.updateActionItemSuccess.bind(updateitemdata));
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-/// <summary>   Copies the document set files retrieved by GetDocSetFiles and stored in the filearray variable. </summary>
-///
-/// <remarks>   Daniel R Walker Ctr, 3/9/2017. </remarks>
-///
-/// <param name="msg">  The message. </param>
-///
-/// <returns>   . </returns>
-////////////////////////////////////////////////////////////////////////////////////////////////////
+CKO.GLOBAL.ACTIONS.updateActionItem = function(webUrl, listName, itemId, itemProperties, url, tag) {
+    var itemprops = JSON.stringify(itemProperties);
+    return $.ajax({
+        type: 'POST',
+        url: url,
+        contentType: 'application/json',
+        processData: false,
+        headers: {
+            "Accept": "application/json;odata=verbose",
+            "X-HTTP-Method": "MERGE",
+            "If-Match": tag
+        },
+        data: JSON.stringify(itemProperties)
+    });
+}
 
-function CopyDocSetFiles(msg) {
-    // Assumes an array of file data objects exists in the filearray variable.
-    // After the files are copied, navigate to the home page for the created document set.
-    if (msg != null) { logit(msg); }  // used to log messages to the console as the files are copied.
-    var item;
-
-    function handleError(msg) {
-        // Just move on for now
-        if (msg != null) { logit("handleError: " + msg); }  // used to log messages to the console if there is an error. TODO: Alert the user?
-        CopyDocSetFiles(null);
-    }
-
-    if (filearray.length > 0) { // There are files to be copied
-        logit("filearray length: " + filearray.length);
-        item = filearray.pop();
-        var ctx = SP.ClientContext.get_current();
-        var web = ctx.get_web();
-        var currentLib = web.get_lists().getByTitle(item.sourcelib);
-        var listitem = currentLib.getItemById(item.fileid);
-        var file = listitem.get_file();
-        ctx.load(file);
-        ctx.executeQueryAsync(
-            function () {
-                if (file != null) {
-                    var destFileUrl = fixurl('/' + item.destinationlib + '/' + item.docsetname + '/' + item.docsetname + ' - ' + file.get_name());
-                    file.copyTo(destFileUrl, true);
-                    ctx.executeQueryAsync(
-                        function () { CopyDocSetFiles(file.get_name() + " Copied"); },
-                        function (sender, args) {
-                            logit("Calling Error Handler");
-                            handleError(args.get_message());
-                        }
-                    );
-                }
-                else {
-                    logit("404 FILE NOT FOUND!!!");
-                }
-            },
-            function (sender, args) {
-                logit("Error while getting the file. Calling Error Handler.");
-                handleError(args.get_message());
-            }
-        );
-    }
-    else {
-        logit("All Files Copied");
-        $().SPSTools_Notify({ type: 'wait', content: 'Files Copied. Redirecting To Document Set...' });
-        userID = _spPageContextInfo.userId;
-        var requestUri = "https://portal.ndu.edu/coo/AdminActions/_vti_bin/ListData.svc/StaffActions?$filter=(CreatedById eq " + userID + ") and (ControlNumber eq '" + CKO.GLOBAL.VARIABLES.controlnumber + "')";
-        var requestHeaders = {
-            "accept": "application/json;odata=verbose"
-        };
-
-        $.ajax({
-            url: requestUri,
-            contentType: "application/json;odata=verbose",
-            headers: requestHeaders,
-            success: function (data) {
-                if (data.d.results.length > 0) {
-                    // Get the id of the item
-                    var id = data.d.results[0].Id;
-                    $("#SPSTools_Notify").fadeOut("2500", function () {
-                        $("#SPSTools_Notify").html("");
-                    });
-                    window.location = "https://portal.ndu.edu/coo/AdminActions/StaffActions/Forms/StaffAction/docsethomepage.aspx?ID=" + id + "&FolderCTID=0x0120D5200013B8FD71893B2B40AF2F065AF09012520064EB76582012844E8173AC3CB61A9190&List=03e8e4fa-2390-46f6-a016-ec59a2e32924&RootFolder=%2Fcoo%2FAdminActions%2FStaffActions%2F" + dsn;
-                }
-            },
-            error: function () { logit("Get Doc Set For User Failed."); }
+CKO.GLOBAL.ACTIONS.updateActionItemSuccess = function (data) {
+    var v = CKO.GLOBAL.VARIABLES;
+    var updateitemdata = this;
+    v.count += 1;
+    if (v.count === v.total) {
+        $("#SPSTools_Notify").fadeOut("2500", function () {
+            $("#SPSTools_Notify").html("");
         });
+        window.location = window.location;
     }
 }
 
 // The REST calls rock
 
 CKO.REST.GetActionItems = function () {
-    var g = CKO.GLOBAL.VARIABLES;
-
+    
     var getitemsbyidandpasstoelement = function (site, userid, element) {
         var deferred = jQuery.Deferred();
         var urlString = site + "/_vti_bin/listdata.svc/Actions?";
-        urlString += "$select=Id,Title,Expended,PMTUser/Id,ActionComments,Enabler,DateCompleted,EffortTypeValue,EndOfWeek";
+        urlString += "$select=Id,Title,Expended,PMTUser/Id,ActionComments,Enabler,DateCompleted,EffortTypeValue";
         urlString += "&$expand=PMTUser";
         urlString += "&$filter=((PMTUser/Id eq " + userid + ") and (DateCompleted ge datetime'" + moment().subtract(31, 'days').format('YYYY-MM-DD[T]HH:MM:SS[Z]') + "'))";
         jQuery.ajax({
@@ -673,19 +995,13 @@ CKO.REST.GetActionItems = function () {
         return deferred.promise();
     };
 
-    var getitemssucceeded = function (caller, data, args) {
-        
-    };
-
     return {
-        getitemsbyidandpasstoelement: getitemsbyidandpasstoelement,
-        getitemssucceeded: getitemssucceeded
+        getitemsbyidandpasstoelement: getitemsbyidandpasstoelement
     }
 }();
 
 CKO.REST.GetListItems = function () {
-    var g = CKO.GLOBAL.VARIABLES;
-
+    var v = CKO.GLOBAL.VARIABLES;
     var getitems = function (qurl) {
         var ajax = jQuery.ajax({
             url: qurl,
@@ -696,26 +1012,42 @@ CKO.REST.GetListItems = function () {
                 return ("CKO.REST.GetListItems Error: " + err);
             },
             success: function (data) {
-                //g.response = g.response.concat(data.d.results);
                 return data;
-                //if (data.d.__next) {
-                //    CKO.REST.GetListItems.getitems(data.d.__next);
-                //}
-                //else {
-                //    return g.response;
-                //}
+            }
+        });
+        return ajax.promise();
+    };
+
+    var getitemsrecursive = function (qurl) {
+        jQuery.ajax({
+            url: qurl,
+            method: "GET",
+            headers: { 'accept': 'application/json; odata=verbose' },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var err = textStatus + ", " + errorThrown;
+                return ("CKO.REST.GetListItems Error: " + err);
+            },
+            success: function (data) {
+                v.data = v.data.concat(data.d.results);
+                if (data.d.__next) {
+                    CKO.REST.GetListItems.getitemsrecursive(data.d.__next);
+                }
+                else {
+                    return v.data;
+                }
+                //return data;
             }
         });
         return ajax.promise();
     };
 
     return {
-        getitems: getitems
+        getitems: getitems,
+        getitemsrecursive: getitemsrecursive
     }
 }();
 
 CKO.REST.ListItems = function () {
-    var g = CKO.GLOBAL.VARIABLES;
 
     var getitems = function (qurl) {
         var ajax = jQuery.ajax({
@@ -727,14 +1059,7 @@ CKO.REST.ListItems = function () {
                 return ("CKO.REST.GetListItems Error: " + err);
             },
             success: function (data) {
-                //g.response = g.response.concat(data.d.results);
                 return data;
-                //if (data.d.__next) {
-                //    CKO.REST.GetListItems.getitems(data.d.__next);
-                //}
-                //else {
-                //    return g.response;
-                //}
             }
         });
         return ajax.promise();
@@ -763,13 +1088,11 @@ CKO.REST.ListItems = function () {
         return ajax.promise();
     }
 
-
     return {
         getitems: getitems,
         addItems: addItems
     }
 }();
-
 
 // The CSOM functions are all promise based functions that use the various SharePoint CSOM actions to get various types of data.
 CKO.CSOM.GetUserInfo = function () {

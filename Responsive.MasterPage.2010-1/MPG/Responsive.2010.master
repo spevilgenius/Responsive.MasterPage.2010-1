@@ -23,9 +23,8 @@
         var _fV4UI = true;
     </script>
     <SharePoint:ScriptLink language="javascript" Defer="true" runat="server" />
-
-    <%--<link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap.min.css %>" runat="server" />
-    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap-theme.min.css %>" runat="server" />--%>
+    <SharePoint:ScriptLink language="javascript" Defer="true" runat="server" Name="core.js"/>
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/iemenufixes.js" defer="true" runat="server" Localizable="false" />
     
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/custom-bootstrap-theme.css %>" runat="server" />
     <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap-datepicker3.standalone.min.css %>" runat="server" />
@@ -51,7 +50,7 @@
 
     <script type="text/javascript">
         ExecuteOrDelayUntilScriptLoaded(function () {
-            document.write('<script type="text/javascript" src="https://hq.tradoc.army.mil/sites/OCKO/SiteAssets/js/iefixes.js"></' + 'script>');
+            document.write('<script type="text/javascript" src="https://hq.tradoc.army.mil/sites/OCKO/SiteAssets/js/ieformfixes.js"></' + 'script>');
         }, 'form.js');
     </script>
     <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
@@ -2800,7 +2799,7 @@
                                 <ul class="dropdown-menu" id="Nav-SiteActionsDD"></ul>
                             </li>
                             <li id="Nav-Help">
-                                <a title="Help" href="#" onclick="TopHelpButtonClick('HelpHome', event);return  false"><span class="nav-help"></span></a>
+                                <a title="Help" style="padding: 11px 15px 11px 15px" href="#" onclick="TopHelpButtonClick('HelpHome', event);return  false"><svg class="fa fa-question-circle" style="width: 24px; height: 24px; display: block;"><use xlink:href="#fa-question-circle"></use></svg></a>
                             </li>
                         </ul>
                     </div>
@@ -3066,7 +3065,7 @@
                             <div id="s4-leftpanel" class="ms-dialogHidden s4-notdlg">
                                 <asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" runat="server">
                                     <PublishingNavigation:PortalSiteMapDataSource id="SiteMapDS" runat="server" EnableViewState="false" SiteMapProvider="CurrentNavigation" StartFromCurrentNode="true" StartingNodeOffset="0" ShowStartingNode="false" TrimNonCurrentTypes="Heading" />
-                                    <SharePoint:AspMenu id="CurrentNav" EncodeTitle="false" runat="server" EnableViewState="false" DataSourceID="SiteMapDS" UseSeparateCSS="false" UseSimpleRendering="true" Orientation="Vertical" StaticDisplayLevels="2" MaximumDynamicDisplayLevels="0" CssClass="s4-ql" SkipLinkText="<%$Resources:cms,masterpages_skiplinktext%>" />
+                                    <SharePoint:AspMenu id="CurrentNav" EncodeTitle="false" runat="server" EnableViewState="false" DataSourceID="SiteMapDS" UseSeparateCSS="false" UseSimpleRendering="true" Orientation="Vertical" StaticDisplayLevels="4" MaximumDynamicDisplayLevels="0" CssClass="s4-ql" SkipLinkText="<%$Resources:cms,masterpages_skiplinktext%>" />
                                     <Sharepoint:UIVersionedContent runat="server" UIVersion="4">
 				<ContentTemplate>
 					<Sharepoint:SPNavigationManager

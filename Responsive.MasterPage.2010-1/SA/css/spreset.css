@@ -45,6 +45,14 @@ a:focus {
 button::-moz-focus-inner {
 	border: 0;
 }
+
+/*.allDashboardFilter {
+    position: static;
+    margin-left: 180px;
+    margin-top: -7.5px;
+    display:none;
+}*/
+
 /*end bootstrap resets*/
 
 .ms-cui-ctl-thin {padding:0 4px !important; height:100% !important; margin-top:10px !important;}
@@ -56,108 +64,3 @@ button::-moz-focus-inner {
 .ms-dlgFrameContainer { overflow-y: hidden !important; }
 
 .ms-cui-topBar2 img { max-width: none; }
-
-/*
-html {
-    min-height: 0;
-}
-
-body #s4-ribbonrow, {
-    position: fixed;
-    z-index: 1000;
-}
-
-body .ms-MenuUIPopupBody,
-body .ms-popoutMenu,
-body .ms-cui-menu[id ^= "Ribbon."] {
-            position: fixed !important;
-}
-
-#s4-workspace {
-    overflow: visible !important;
-}
-form#aspnetForm {
-    height: auto;
-}
-
-.navbar-default {
-    border-width: 0;
-}
-.ms-dlgOverlay {
-    width: 100% !important;
-}
- 
-body #s4-bodyContainer {
-    min-width: 0;
-}
- 
-body #s4-ribbonrow {
-    line-height: 1.2;
-}
-body .s4-breadcrumb-menu {
-    background-color: #FFFFFF;
-}
-body a:hover,
-body a:focus,
-body a:active {
-    text-decoration: none;
-}
-
-body #pageStatusBar,
-body .ms-cui-tooltip {
-    line-height: 1.1;
-    font-size: 8pt;
-}
-body .ms-dlgContent {
-    line-height: 1.1;
-}
- 
-#s4-ribbonrow *,
-#s4-ribbonrow *:before,
-#s4-ribbonrow *:after,
-*[class*='ms-dlg'],
-*[class*='ms-dlg']:before,
-*[class*='ms-dlg']:after,
-.ms-dlgFrameContainer > div,
-.ms-dlgFrameContainer > div:before,
-.ms-dlgFrameContainer > div:after,
-.ms-dlgFrameContainer > div > div,
-.ms-dlgFrameContainer > div > div:before,
-.ms-dlgFrameContainer > div > div:after,
-.ms-MenuUIPopupBody,
-.ms-MenuUIPopupBody:before,
-.ms-MenuUIPopupBody:after,
-.ms-MenuUIPopupBody *,
-.ms-MenuUIPopupBody *:before,
-.ms-MenuUIPopupBody *:after,
-.ms-ToolPaneOuter,
-.ms-ToolPaneOuter:before,
-.ms-ToolPaneOuter:after,
-.ms-ToolPaneOuter *,
-.ms-ToolPaneOuter *:before,
-.ms-ToolPaneOuter *:after,
-*[class*='ms-cui'],
-*[class*='ms-cui']:before,
-*[class*='ms-cui']:after,
-*[class*='ms-cui'] *,
-*[class*='ms-cui'] *:before,
-*[class*='ms-cui'] *:after {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-.ms-cui-modalDiv-ie,
-.ms-cui-glass-ie {
-    background-color: transparent;
-}
-
-.outer .ms-WPBody {
-    font-family: inherit;
-    font-size: inherit;
-}
-.ms-ToolPaneOuter img {
-    display: inline-block;
-    max-width: none;
-}
-*/

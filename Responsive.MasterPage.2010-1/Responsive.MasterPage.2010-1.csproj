@@ -79,6 +79,7 @@
     <None Include="MPG\NDU.Responsive.2010.master" />
     <None Include="MPG\Responsive.2010.master" />
     <None Include="MPG\Responsive.master" />
+    <None Include="MPG\Responsive_PMT.master" />
     <None Include="MPG\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5025a7f0-bac4-43a0-8f61-c57a3daab344}</SharePointProjectItemId>
     </None>
@@ -134,6 +135,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="MPG\AllDashboardReportsLayout2.aspx" />
+    <Content Include="MPG\AllDashboardReportsLayout.aspx" />
     <Content Include="MPG\DiversityReportsPageLayout.aspx" />
     <Content Include="MPG\Elements.xml" />
     <Content Include="MPG\navleft.png" />
@@ -143,6 +146,9 @@
     <Content Include="MPG\nnsBlankWebPartPage.png" />
     <Content Include="MPG\NNSR-BlankWebPartPage.aspx" />
     <Content Include="MPG\NNSR-BlankWebPartPageFull.aspx" />
+    <Content Include="MPG\TrainingDashboardLayout.aspx" />
+    <Content Include="SA\css\AllDashboardReports2.css" />
+    <Content Include="SA\css\bootstrap-4-navbar.css" />
     <Content Include="SA\css\bootstrap-theme.min.css" />
     <Content Include="SA\css\bootstrap.min.css" />
     <Content Include="SA\css\common.css" />
@@ -154,6 +160,7 @@
     <Content Include="SA\css\global.structure.css" />
     <Content Include="SA\css\global.theme.css" />
     <Content Include="SA\css\jpl-styles-skm.css" />
+    <Content Include="SA\css\site.theme.css" />
     <Content Include="SA\css\spreset.css" />
     <Content Include="SA\css\styles-may2017.css" />
     <Content Include="SA\Elements.xml" />
@@ -168,18 +175,23 @@
     <Content Include="SA\images\goldstar1.svg" />
     <Content Include="SA\images\staricons1.gif" />
     <Content Include="SA\js\AIEM_gantt.js" />
+    <Content Include="SA\js\AllDashboardReports2.js" />
+    <Content Include="SA\js\AllDashboardReports.js" />
+    <Content Include="SA\js\bootstrap-4-navbar.js" />
     <Content Include="SA\js\bootstrap.min.js" />
     <Content Include="SA\js\calendar_color.js" />
     <Content Include="SA\js\camlbuilder.js" />
     <Content Include="SA\js\camljs.min.js" />
     <Content Include="SA\js\customFooter.js" />
     <Content Include="SA\js\gridCalendar.js" />
+    <Content Include="SA\js\highcharts-more.js" />
     <Content Include="SA\js\highcharts_helper.js" />
     <Content Include="SA\js\iefixes.js" />
     <Content Include="SA\js\jquery.fn.gantt.js" />
     <Content Include="SA\js\jquery.fn.gantt.min.js" />
     <Content Include="SA\js\jquery.min.js" />
     <Content Include="SA\js\masterpage.js" />
+    <Content Include="SA\js\solid-gauge.js" />
     <Content Include="SA\js\tether.min.js" />
     <Content Include="SA\js\utilityfunctions.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

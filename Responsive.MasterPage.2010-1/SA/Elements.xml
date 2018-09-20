@@ -53,5 +53,13 @@
     <File Path="SA\js\bootstrap-datepicker.min.js" Url="SA/js/bootstrap-datepicker.min.js" />
     <File Path="SA\css\bootstrap-datepicker3.standalone.min.css" Url="SA/css/bootstrap-datepicker3.standalone.min.css" />
     <File Path="SA\js\highcharts_helper.js" Url="SA/js/highcharts_helper.js" />
+    <File Path="SA\js\solid-gauge.js" Url="SA/js/solid-gauge.js" />
+    <File Path="SA\js\highcharts-more.js" Url="SA/js/highcharts-more.js" />
+    <File Path="SA\js\AllDashboardReports.js" Url="SA/js/AllDashboardReports.js" />
+    <File Path="SA\js\AllDashboardReports2.js" Url="SA/js/AllDashboardReports2.js" />
+    <File Path="SA\css\AllDashboardReports2.css" Url="SA/css/AllDashboardReports2.css" />
+    <File Path="SA\js\ie11fixes.js" Url="SA/js/ie11fixes.js" />
+    <File Path="SA\js\masterpage2.js" Url="SA/js/masterpage2.js" />
+    <File Path="SA\css\site.theme.css" Url="SA/css/site.theme.css" />
   </Module>
 </Elements>

@@ -1,0 +1,422 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html>
+<%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="wssuc" TagName="Welcome" Src="~/_controltemplates/Welcome.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="DesignModeConsole" Src="~/_controltemplates/DesignModeConsole.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="MUISelector" Src="~/_controltemplates/MUISelector.ascx" %>
+<%@ Register TagPrefix="PublishingNavigation" Namespace="Microsoft.SharePoint.Publishing.Navigation" Assembly="Microsoft.SharePoint.Publishing, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%$Resources:wss,language_value %>" dir="<%$Resources:wss,multipages_direction_dir_value %>" runat="server">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <SharePoint:RobotsMetaTag runat="server" />
+    <title runat="server">
+        <asp:ContentPlaceHolder ID="PlaceHolderPageTitle" runat="server">SiteName</asp:ContentPlaceHolder>
+    </title>
+    <SharePoint:SPShortcutIcon runat="server" IconUrl="/Style Library/sitename/favicon.ico" />
+    <SharePoint:CssLink runat="server" Version="4" />
+    <SharePoint:Theme runat="server" />
+    <SharePoint:SPPageManager runat="server" />
+    <SharePoint:ULSClientConfig runat="server" />
+    <script type="text/javascript">
+        var _fV4UI = true;
+    </script>
+    <SharePoint:ScriptLink language="javascript" Defer="true" runat="server" />
+    <SharePoint:ScriptLink language="javascript" Defer="true" runat="server" Name="core.js" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/iemenufixes.js" defer="true" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/ie11fixes.js" defer="true" runat="server" Localizable="false" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap.min.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/bootstrap-datepicker3.standalone.min.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/spreset.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/common.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/jquery.powertip.min.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~sitecollection/SiteAssets/css/site.theme.css %>" runat="server" />
+    <link rel="stylesheet" href="<% $SPUrl:~site/SiteAssets/css/web.theme.css %>" runat="server" />
+
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/jquery-3.3.1.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/bootstrap.bundle.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/bootstrap-datepicker.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/vue.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/moment.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/moment-timezone.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/jquery.powertip.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/SPServices.min.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/utilityfunctions.js" defer="false" runat="server" Localizable="false" />
+    <SharePoint:ScriptLink language="javascript" name="~sitecollection/SiteAssets/js/masterpage2.js" defer="false" runat="server" Localizable="false" />
+    <%-- Add ability for each web to have a specific login script. Use to populate the global current user variable --%>
+    <SharePoint:ScriptLink language="javascript" name="~site/SiteAssets/js/login.js" defer="false" runat="server" Localizable="false" />
+
+    <script type="text/javascript">
+        ExecuteOrDelayUntilScriptLoaded(function () {
+            document.write('<script type="text/javascript" src="https://hq.tradoc.army.mil/sites/dcos/SiteAssets/js/ieformfixes.js"></' + 'script>');
+        }, 'form.js');
+    </script>
+
+    <script type="text/javascript">
+        function ProcessImn() { }
+        function ProcessImnMarkers() { }
+    </script>
+    <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
+    <asp:ContentPlaceHolder ID="PlaceHolderAdditionalPageHead" runat="server" />
+    <asp:ContentPlaceHolder ID="PlaceHolderBodyAreaClass" runat="server" />
+    <asp:ContentPlaceHolder ID="PlaceHolderTitleAreaClass" runat="server" />
+</head>
+
+<body scroll="no" onload="javascript:_spBodyOnLoadWrapper();">
+    <form runat="server" onsubmit="return _spFormOnSubmitWrapper();">
+        <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+        <WebPartPages:SPWebPartManager runat="server" />
+        <SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation" />
+
+        <nav id="SiteNavigation" class="navbar navbar-expand-lg navbar-dark bg-dark s4-notdlg" style="background-color: #000000 !important; ">
+            <a class="navbar-brand" href="#">PMT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+            <div class="form-inline my-2 my-lg-0">
+                <div class="s4-notdlg">
+                    <asp:ContentPlaceHolder ID="PlaceHolderSearchArea" runat="server">
+                        <SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox" Version="4" />
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </nav>
+
+        <div id="s4-ribbonrow" class="s4-pr s4-ribbonrowhidetitle">
+            <div id="s4-ribboncont">
+                <SharePoint:SPRibbon
+                    runat="server"
+                    PlaceholderElementId="RibbonContainer"
+                    CssFile="">
+                    <SharePoint:SPRibbonPeripheralContent
+                        runat="server"
+                        Location="TabRowLeft"
+                        CssClass="ms-siteactionscontainer s4-notdlg">
+                        <span class="ms-siteactionsmenu" id="siteactiontd">
+                            <SharePoint:SiteActions runat="server" accesskey="<%$Resources:wss,tb_SiteActions_AK%>" id="SiteActionsMenuMain"
+                                PrefixHtml=""
+                                SuffixHtml=""
+                                MenuNotVisibleHtml="&amp;nbsp;">
+                                <customtemplate>
+						<SharePoint:FeatureMenuTemplate runat="server"
+							FeatureScope="Site"
+							Location="Microsoft.SharePoint.StandardMenu"
+							GroupId="SiteActions"
+							UseShortId="true"
+							>
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_EditPage"
+								Text="<%$Resources:wss,siteactions_editpage%>"
+								Description="<%$Resources:wss,siteactions_editpagedescriptionv4%>"
+								ImageUrl="/_layouts/images/ActionsEditPage.png"
+								MenuGroupId="100"
+								Sequence="110"
+								ClientOnClickNavigateUrl="javascript:ChangeLayoutMode(false);"
+								/>
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_TakeOffline"
+								Text="<%$Resources:wss,siteactions_takeoffline%>"
+								Description="<%$Resources:wss,siteactions_takeofflinedescription%>"
+								ImageUrl="/_layouts/images/connecttospworkspace32.png"
+								MenuGroupId="100"
+								Sequence="120"
+								/>
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_CreatePage"
+								Text="<%$Resources:wss,siteactions_createpage%>"
+								Description="<%$Resources:wss,siteactions_createpagedesc%>"
+								ImageUrl="/_layouts/images/NewContentPageHH.png"
+								MenuGroupId="200"
+								Sequence="210"
+								UseShortId="true"
+								ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('Page')) { OpenCreateWebPageDialog('~site/_layouts/createwebpage.aspx') }"
+								PermissionsString="AddListItems, EditListItems"
+								PermissionMode="All" />
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_CreateDocLib"
+								Text="<%$Resources:wss,siteactions_createdoclib%>"
+								Description="<%$Resources:wss,siteactions_createdoclibdesc%>"
+								ImageUrl="/_layouts/images/NewDocLibHH.png"
+								MenuGroupId="200"
+								Sequence="220"
+								UseShortId="true"
+								ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('DocLib')) { GoToPage('~site/_layouts/new.aspx?FeatureId={00bfea71-e717-4e80-aa17-d0c71b360101}&amp;ListTemplate=101') }"
+								PermissionsString="ManageLists"
+								PermissionMode="Any"
+								VisibilityFeatureId="00BFEA71-E717-4E80-AA17-D0C71B360101" />
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_CreateSite"
+								Text="<%$Resources:wss,siteactions_createsite%>"
+								Description="<%$Resources:wss,siteactions_createsitedesc%>"
+								ImageUrl="/_layouts/images/newweb32.png"
+								MenuGroupId="200"
+								Sequence="230"
+								UseShortId="true"
+								ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('Site')) { STSNavigate('~site/_layouts/newsbweb.aspx') }"
+								PermissionsString="ManageSubwebs,ViewFormPages"
+								PermissionMode="All" />
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_Create"
+								Text="<%$Resources:wss,siteactions_create%>"
+								Description="<%$Resources:wss,siteactions_createdesc%>"
+								MenuGroupId="200"
+								Sequence="240"
+								UseShortId="true"
+								ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('All')) { STSNavigate('~site/_layouts/create.aspx') }"
+								PermissionsString="ManageLists, ManageSubwebs"
+								PermissionMode="Any" />
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_ViewAllSiteContents"
+								Text="<%$Resources:wss,quiklnch_allcontent%>"
+								Description="<%$Resources:wss,siteactions_allcontentdescription%>"
+								ImageUrl="/_layouts/images/allcontent32.png"
+								MenuGroupId="300"
+								Sequence="302"
+								UseShortId="true"
+								ClientOnClickNavigateUrl="~site/_layouts/viewlsts.aspx"
+								PermissionsString="ViewFormPages"
+								PermissionMode="Any" />
+							 <SharePoint:MenuItemTemplate runat="server" id="MenuItem_EditSite"
+								Text="<%$Resources:wss,siteactions_editsite%>"
+								Description="<%$Resources:wss,siteactions_editsitedescription%>"
+								ImageUrl="/_layouts/images/SharePointDesigner32.png"
+								MenuGroupId="300"
+								Sequence="304"
+								UseShortId="true"
+								ClientOnClickScriptContainingPrefixedUrl="EditInSPD('~site/',true);"
+								PermissionsString="AddAndCustomizePages"
+								PermissionMode="Any"
+							/>							
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_SitePermissions"
+								Text="<%$Resources:wss,people_sitepermissions%>"
+								Description="<%$Resources:wss,siteactions_sitepermissiondescriptionv4%>"
+								ImageUrl="/_layouts/images/Permissions32.png"
+								MenuGroupId="300"
+								Sequence="310"
+								UseShortId="true"
+								ClientOnClickNavigateUrl="~site/_layouts/user.aspx"
+								PermissionsString="EnumeratePermissions"
+								PermissionMode="Any" />
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_Settings"
+								Text="<%$Resources:wss,settings_pagetitle%>"
+								Description="<%$Resources:wss,siteactions_sitesettingsdescriptionv4%>"
+								ImageUrl="/_layouts/images/settingsIcon.png"
+								MenuGroupId="300"
+								Sequence="320"
+								UseShortId="true"
+								ClientOnClickNavigateUrl="~site/_layouts/settings.aspx"
+								PermissionsString="EnumeratePermissions,ManageWeb,ManageSubwebs,AddAndCustomizePages,ApplyThemeAndBorder,ManageAlerts,ManageLists,ViewUsageData"
+								PermissionMode="Any" />
+							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_CommitNewUI"
+								Text="<%$Resources:wss,siteactions_commitnewui%>"
+								Description="<%$Resources:wss,siteactions_commitnewuidescription%>"
+								ImageUrl="/_layouts/images/visualupgradehh.png"
+								MenuGroupId="300"
+								Sequence="330"
+								UseShortId="true"
+								ClientOnClickScriptContainingPrefixedUrl="GoToPage('~site/_layouts/prjsetng.aspx')"
+								PermissionsString="ManageWeb"
+								PermissionMode="Any"
+								ShowOnlyIfUIVersionConfigurationEnabled="true" />
+						</SharePoint:FeatureMenuTemplate>
+						</customtemplate>
+                            </SharePoint:SiteActions></span>
+                        <asp:ContentPlaceHolder ID="PlaceHolderGlobalNavigation" runat="server">
+                            <SharePoint:PopoutMenu
+                                runat="server"
+                                ID="GlobalBreadCrumbNavPopout"
+                                IconUrl="/_layouts/images/fgimg.png"
+                                IconAlt="<%$Resources:wss,master_breadcrumbIconAlt%>"
+                                IconOffsetX="0"
+                                IconOffsetY="112"
+                                IconWidth="16"
+                                IconHeight="16"
+                                AnchorCss="s4-breadcrumb-anchor"
+                                AnchorOpenCss="s4-breadcrumb-anchor-open"
+                                MenuCss="s4-breadcrumb-menu">
+                                <div class="s4-breadcrumb-top">
+                                    <asp:Label runat="server" CssClass="s4-breadcrumb-header" Text="<%$Resources:wss,master_breadcrumbHeader%>" />
+                                </div>
+                                <asp:ContentPlaceHolder ID="PlaceHolderTitleBreadcrumb" runat="server">
+                                    <SharePoint:ListSiteMapPath
+                                        runat="server"
+                                        SiteMapProviders="SPSiteMapProvider,SPContentMapProvider"
+                                        RenderCurrentNodeAsLink="false"
+                                        PathSeparator=""
+                                        CssClass="s4-breadcrumb"
+                                        NodeStyle-CssClass="s4-breadcrumbNode"
+                                        CurrentNodeStyle-CssClass="s4-breadcrumbCurrentNode"
+                                        RootNodeStyle-CssClass="s4-breadcrumbRootNode"
+                                        NodeImageOffsetX="0"
+                                        NodeImageOffsetY="353"
+                                        NodeImageWidth="16"
+                                        NodeImageHeight="16"
+                                        NodeImageUrl="/_layouts/images/fgimg.png"
+                                        RTLNodeImageOffsetX="0"
+                                        RTLNodeImageOffsetY="376"
+                                        RTLNodeImageWidth="16"
+                                        RTLNodeImageHeight="16"
+                                        RTLNodeImageUrl="/_layouts/images/fgimg.png"
+                                        HideInteriorRootNodes="true"
+                                        SkipLinkText="" />
+                                </asp:ContentPlaceHolder>
+                            </SharePoint:PopoutMenu>
+                        </asp:ContentPlaceHolder>
+
+                        <SharePoint:PageStateActionButton id="PageStateActionButton" runat="server" Visible="false" />
+                    </SharePoint:SPRibbonPeripheralContent>
+
+                    <SharePoint:SPRibbonPeripheralContent
+                        runat="server"
+                        Location="TabRowRight"
+                        ID="RibbonTabRowRight"
+                        CssClass="s4-trc-container s4-notdlg">
+
+                        <!-- GlobalSiteLink0 delegate - the variation selector / shows nothing by default otherwise -->
+                        <SharePoint:DelegateControl runat="server" ID="GlobalDelegate0" ControlId="GlobalSiteLink0" />
+
+                        <!-- Welcome / Login control -->
+                        <div class="s4-trc-container-menu">
+                            <div>
+                                <wssuc:Welcome id="IdWelcome" runat="server" EnableViewState="false">
+                                </wssuc:Welcome>
+                                <!-- MultiLingual User Interface menu -->
+                                <wssuc:MUISelector ID="IdMuiSelector" runat="server" />
+                            </div>
+                        </div>
+
+                        <!-- GlobalSiteLink2 delegate default shows nothing -->
+                        <SharePoint:DelegateControl ControlId="GlobalSiteLink2" ID="GlobalDelegate2" Scope="Farm" runat="server" />
+
+                        <!-- link to launch developer dashboard if its activated by admin -->
+                        <span>
+                            <span class="s4-devdashboard">
+                                <SharePoint:DeveloperDashboardLauncher
+                                    ID="DeveloperDashboardLauncher"
+                                    NavigateUrl="javascript:ToggleDeveloperDashboard()"
+                                    runat="server"
+                                    ImageUrl="/_layouts/images/fgimg.png"
+                                    Text="<%$Resources:wss,multipages_launchdevdashalt_text%>"
+                                    OffsetX="0"
+                                    OffsetY="222"
+                                    Height="16"
+                                    Width="16" />
+                            </span>
+                        </span>
+                    </SharePoint:SPRibbonPeripheralContent>
+                </SharePoint:SPRibbon>
+
+                <!-- end main ribbon control -->
+            </div>
+            <div id="notificationArea" class="s4-noti"></div>
+            <asp:ContentPlaceHolder ID="SPNavigation" runat="server">
+                <SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate">
+                </SharePoint:DelegateControl>
+            </asp:ContentPlaceHolder>
+
+            <div id="WebPartAdderUpdatePanelContainer">
+                <asp:UpdatePanel
+                    ID="WebPartAdderUpdatePanel"
+                    UpdateMode="Conditional"
+                    ChildrenAsTriggers="false"
+                    runat="server">
+                    <ContentTemplate>
+                        <WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" />
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:PostBackTrigger ControlID="WebPartAdder" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <div id="s4-workspace">
+            <div id="s4-bodyContainer">
+                <div id="MSO_ContentDiv" runat="server">
+                    <div class="s4-notdlg">
+                        <div id="s4-statusbarcontainer" class="s4-notdlg">
+                            <div id="pageStatusBar" class="s4-status-s1"></div>
+                        </div>
+                    </div>
+                    <div id="s4-leftpanel" class="s4-notdlg">
+                        <asp:ContentPlaceHolder ID="PlaceHolderLeftNavBar" runat="server">
+                            <PublishingNavigation:PortalSiteMapDataSource
+                                ID="SiteMapDS"
+                                runat="server"
+                                EnableViewState="false"
+                                SiteMapProvider="CurrentNavigation"
+                                StartFromCurrentNode="true"
+                                StartingNodeOffset="0"
+                                ShowStartingNode="false"
+                                TrimNonCurrentTypes="Heading" />
+                            <SharePoint:AspMenu
+                                ID="CurrentNav"
+                                EncodeTitle="false"
+                                runat="server"
+                                EnableViewState="false"
+                                DataSourceID="SiteMapDS"
+                                UseSeparateCSS="false"
+                                UseSimpleRendering="true"
+                                Orientation="Vertical"
+                                StaticDisplayLevels="2"
+                                MaximumDynamicDisplayLevels="0"
+                                CssClass="s4-ql"
+                                SkipLinkText="<%$Resources:cms,masterpages_skiplinktext%>" />
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div class="s4-ca">
+                        <div>
+                            <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server" />
+                        </div>
+                    </div>
+                    <div id="DeveloperDashboard" class="ms-developerdashboard">
+                        <SharePoint:DeveloperDashboard runat="server" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <asp:ContentPlaceHolder ID="PlaceHolderFormDigest" runat="server">
+            <SharePoint:FormDigest runat="server" />
+        </asp:ContentPlaceHolder>
+
+        <asp:Panel Visible="false" runat="server">
+            <SharePoint:DelegateControl runat="server" ControlId="TreeViewAndDataSource"></SharePoint:DelegateControl>
+            <asp:ContentPlaceHolder ID="PlaceHolderLeftActions" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderPageTitleInTitleArea" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderPageDescription" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderHorizontalNav" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderTopNavBar" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderQuickLaunchTop" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderQuickLaunchBottom" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderLeftNavBarDataSource" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderCalendarNavigator" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderLeftNavBarTop" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderGlobalNavigationSiteMap" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderSiteName" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderPageImage" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderTitleLeftBorder" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderMiniConsole" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderTitleRightMargin" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderTitleAreaSeparator" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderNavSpacer" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderLeftNavBarBorder" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderBodyLeftBorder" runat="server" />
+            <asp:ContentPlaceHolder ID="PlaceHolderBodyRightMargin" runat="server" />
+
+        </asp:Panel>
+
+        <input type="text" name="__spDummyText1" style="display: none;" size="1" />
+        <input type="text" name="__spDummyText2" style="display: none;" size="1" />
+
+    </form>
+
+    <asp:ContentPlaceHolder ID="PlaceHolderUtilityContent" runat="server" />
+
+    <SharePoint:WarnOnUnsupportedBrowsers runat="server" />
+
+</body>
+</html>

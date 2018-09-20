@@ -54,5 +54,13 @@
     <ProjectItemFile Source="js\bootstrap-datepicker.min.js" Target="SA\js\" Type="ElementFile" />
     <ProjectItemFile Source="css\bootstrap-datepicker3.standalone.min.css" Target="SA\css\" Type="ElementFile" />
     <ProjectItemFile Source="js\highcharts_helper.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\solid-gauge.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\highcharts-more.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\AllDashboardReports.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\AllDashboardReports2.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="css\AllDashboardReports2.css" Target="SA\css\" Type="ElementFile" />
+    <ProjectItemFile Source="js\ie11fixes.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\masterpage2.js" Target="SA\js\" Type="ElementFile" />
+    <ProjectItemFile Source="css\site.theme.css" Target="SA\css\" Type="ElementFile" />
   </Files>
 </ProjectItem>

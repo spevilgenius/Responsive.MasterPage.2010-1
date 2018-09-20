@@ -51,5 +51,10 @@
     <File Path="MPG\cko_mod.master" Url="MPG/cko_mod.master" />
     <File Path="MPG\G14.master" Url="MPG/G14.master" />
     <File Path="MPG\DiversityReportsPageLayout.aspx" Url="MPG/DiversityReportsPageLayout.aspx" />
+    <File Path="MPG\TrainingDashboardLayout.aspx" Url="MPG/TrainingDashboardLayout.aspx" />
+    <File Path="MPG\AllDashboardReportsLayout.aspx" Url="MPG/AllDashboardReportsLayout.aspx" />
+    <File Path="MPG\AllDashboardReportsLayout2.aspx" Url="MPG/AllDashboardReportsLayout2.aspx" />
+    <File Path="MPG\TrainingDashboardLayout2.aspx" Url="MPG/TrainingDashboardLayout2.aspx" />
+    <File Path="MPG\Responsive_PMT.master" Url="MPG/Responsive_PMT.master" />
   </Module>
 </Elements>

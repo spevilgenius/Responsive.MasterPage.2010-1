@@ -32,5 +32,10 @@
     <ProjectItemFile Source="cko_mod.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="G14.master" Target="MPG\" Type="ElementFile" />
     <ProjectItemFile Source="DiversityReportsPageLayout.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="TrainingDashboardLayout.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="AllDashboardReportsLayout.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="AllDashboardReportsLayout2.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="TrainingDashboardLayout2.aspx" Target="MPG\" Type="ElementFile" />
+    <ProjectItemFile Source="Responsive_PMT.master" Target="MPG\" Type="ElementFile" />
   </Files>
 </ProjectItem>

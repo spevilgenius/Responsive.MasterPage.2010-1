@@ -28,7 +28,7 @@
     var navurl = fixurl("/SiteAssets/html/SiteNavigation.html");
     var scripturl = fixurl("/SiteAssets/js/webslidemenu.js");
     var navscript = fixurl("/SiteAssets/js/SiteNavigation.js");
-    logit("NAVURL: " + navurl);
+    //logit("NAVURL: " + navurl);
     jQuery("#SiteNavigation").load(navurl, function () {
         loadCSS(fixurl('/SiteAssets/css/webslidemenu.css'));
         loadCSS(fixurl('/SiteAssets/css/font-awesome.css'));
